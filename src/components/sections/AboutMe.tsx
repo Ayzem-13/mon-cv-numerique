@@ -1,4 +1,8 @@
+import { useState } from 'react';
+import { skillsData } from '../../data/mockData';
+
 export default function AboutMe() {
+    const [activeSkillCategory, setActiveSkillCategory] = useState<string>('Frontend');
     return (
         <section id="about" className="py-20 bg-white dark:bg-neutral-900 relative overflow-hidden">
             <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -17,7 +21,7 @@ export default function AboutMe() {
                 </div>
 
                 <div className="space-y-20">
-                    {/* Présentation personnelle - Centrée */}
+                    {/* Aboute me */}
                     <div className="max-w-4xl mx-auto text-center">
                         <div className="prose prose-lg max-w-none">
                             <p className="text-lg text-neutral-700 dark:text-neutral-300 leading-relaxed">
@@ -51,7 +55,9 @@ export default function AboutMe() {
                         </div>
                     </div>
 
-                    {/* Section Formations et Expériences côte à côte */}
+                
+
+                    {/* Section Formations and Experiences  */}
                     <div className="grid lg:grid-cols-2 gap-16">
                         {/* Timeline des formations */}
                         <div className="relative">
@@ -63,10 +69,10 @@ export default function AboutMe() {
                             </div>
 
                             <div className="relative space-y-8">
-                                {/* Ligne verticale */}
+                                {/* timeline*/}
                                 <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-green-zzz via-neutral-300 to-neutral-200 dark:via-neutral-600 dark:to-neutral-700"></div>
 
-                                {/* Formation actuelle */}
+                                {/* Formation */}
                                 <div className="relative flex items-start gap-6 group">
                                     <div className="relative z-10">
                                         <div className="w-12 h-12 bg-green-zzz rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
@@ -146,7 +152,7 @@ export default function AboutMe() {
                             </div>
                         </div>
 
-                        {/* Section Expérience Professionnelle */}
+                        {/* Section Pro */}
                         <div className="relative">
                             <div className="text-center mb-8">
                                 <h3 className="text-3xl font-bold text-neutral-900 dark:text-white mb-4">
@@ -197,7 +203,6 @@ export default function AboutMe() {
                                     </div>
                                 </div>
 
-                                {/* Stage Rubambelle */}
                                 <div className="group">
                                     <div className="bg-white dark:bg-neutral-800 rounded-xl p-6 shadow-sm border border-neutral-100 dark:border-neutral-700 group-hover:shadow-lg transition-all duration-300">
                                         <div className="flex items-start justify-between mb-4">
@@ -222,7 +227,7 @@ export default function AboutMe() {
                                         </p>
 
                                         <div className="flex flex-wrap gap-2">
-                                            <span className="px-3 py-1 bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 text-xs rounded-full">
+                                            <span className="px-3    py-1 bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 text-xs rounded-full">
                                                 WordPress
                                             </span>
                                             <span className="px-3 py-1 bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 text-xs rounded-full">
@@ -237,6 +242,107 @@ export default function AboutMe() {
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Skills*/}
+                    <div className="max-w-6xl mx-auto">
+                        <div className="text-center mb-12">
+                            <h3 className="text-3xl md:text-4xl font-bold text-neutral-900 dark:text-white mb-4">
+                                Technologies & Outils
+                            </h3>
+                            <div className="w-20 h-1 bg-gradient-to-r from-green-zzz to-transparent mx-auto rounded-full"></div>
+                            <p className="text-neutral-600 dark:text-neutral-400 mt-4 max-w-2xl mx-auto">
+                                Les technologies que j'utilise pour créer des expériences numériques exceptionnelles
+                            </p>
+                        </div>
+
+                        {/* Tabs */}
+                        <div className="flex justify-center mb-8">
+                            <div className="bg-neutral-100 dark:bg-neutral-800 p-1 rounded-2xl inline-flex gap-1">
+                                {skillsData.map((category) => (
+                                    <button
+                                        key={category.title}
+                                        onClick={() => setActiveSkillCategory(category.title)}
+                                        className={`px-6 py-3 rounded-xl font-semibold text-sm transition-all duration-300 ${
+                                            activeSkillCategory === category.title
+                                                ? 'bg-green-zzz text-neutral-900 shadow-lg transform scale-105'
+                                                : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-200 dark:hover:bg-neutral-700'
+                                        }`}
+                                    >
+                                        {category.title}
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Active */}
+                        <div className="max-w-4xl mx-auto">
+                            {skillsData.map((category) => (
+                                <div
+                                    key={category.title}
+                                    className={`transition-all duration-500 ${
+                                        activeSkillCategory === category.title
+                                            ? 'opacity-100 translate-y-0 max-h-full'
+                                            : 'opacity-0 translate-y-4 max-h-0 overflow-hidden'
+                                    }`}
+                                >
+                                    {activeSkillCategory === category.title && (
+                                        <div className="bg-gradient-to-br from-white to-neutral-50 dark:from-neutral-800 dark:to-neutral-900 rounded-2xl p-8 shadow-xl border border-neutral-100 dark:border-neutral-700">
+                                            <div className="text-center mb-8">
+                                                <div className="w-20 h-20 bg-gradient-to-br from-green-zzz/20 to-green-zzz/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                                                    <div className="w-3 h-3 bg-green-zzz rounded-full shadow-lg animate-pulse"></div>
+                                                </div>
+                                                <h4 className="text-3xl font-bold text-neutral-900 dark:text-white mb-2">
+                                                    {category.title}
+                                                </h4>
+                                                <div className="w-16 h-px bg-green-zzz mx-auto mb-4"></div>
+                                                <p className="text-neutral-600 dark:text-neutral-400 text-lg">
+                                                    {category.description}
+                                                </p>
+                                            </div>
+                                            
+                                            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+                                                {category.technologies.map((tech, index) => {
+                                                    const IconComponent = tech.icon;
+                                                    return (
+                                                        <div 
+                                                            key={tech.name} 
+                                                            className="group/tech"
+                                                            style={{ animationDelay: `${index * 0.1}s` }}
+                                                        >
+                                                            <div className="bg-white dark:bg-neutral-700 rounded-2xl p-6 text-center hover:bg-green-zzz/10 dark:hover:bg-green-zzz/20 transition-all duration-300 hover:scale-105 hover:shadow-xl border border-neutral-100 dark:border-neutral-600 hover:border-green-zzz/50 transform">
+                                                                <div className="mb-4 group-hover/tech:scale-110 transition-transform duration-300 flex justify-center">
+                                                                    <IconComponent className="w-8 h-8 text-neutral-700 dark:text-neutral-300 group-hover/tech:text-green-zzz" />
+                                                                </div>
+                                                                <span className="text-sm font-semibold text-neutral-700 dark:text-neutral-300 group-hover/tech:text-green-zzz">
+                                                                    {tech.name}
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    );
+                                                })}
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
+                            ))}
+                        </div>
+
+                        {/* Pagination */}
+                        <div className="mt-12 flex justify-center">
+                            <div className="flex items-center gap-2">
+                                {skillsData.map((category) => (
+                                    <div 
+                                        key={`indicator-${category.title}`}
+                                        className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                                            activeSkillCategory === category.title
+                                                ? 'bg-green-zzz scale-125'
+                                                : 'bg-neutral-300 dark:bg-neutral-600'
+                                        }`}
+                                    />
+                                ))}
                             </div>
                         </div>
                     </div>

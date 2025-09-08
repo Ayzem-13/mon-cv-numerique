@@ -1,5 +1,16 @@
 import { LuGithub, LuLinkedin, LuMail, LuMapPin, LuPhone } from 'react-icons/lu';
-import type { NavItem, Section } from '../types';
+import { 
+  SiReact, SiTypescript, SiTailwindcss, SiHtml5, SiCss3, SiJavascript,
+  SiPhp, SiSymfony, SiMysql, SiPython,
+  SiGit, SiUnity, SiFigma, SiWordpress, SiVite, SiBootstrap,
+  SiNextdotjs,
+  SiSlack,
+  SiTrello,
+  SiGithub
+} from 'react-icons/si';
+import { FaJava } from "react-icons/fa";
+import { TbBrandReactNative } from "react-icons/tb";
+import type { NavItem, Section, SkillCategory } from '../types';
 
 // Route navigation
 export const navItems: NavItem[] = [
@@ -104,4 +115,47 @@ export const ContactInfo = [
   href: "https://github.com/ROUBAUD-Axel-2225073b",
   description: "Mes projets et contributions"
 }
+];
+
+export const skillsData: SkillCategory[] = [
+  {
+    title: "Frontend",
+    description: "Interface utilisateur & expérience",
+    technologies: [
+      { name: "HTML5", icon: SiHtml5 },
+      { name: "CSS3", icon: SiCss3 },
+      { name: "JavaScript", icon: SiJavascript },
+      { name: "React", icon: SiReact },
+      { name: "ReactNative", icon: TbBrandReactNative },
+      { name: "TypeScript", icon: SiTypescript },
+      { name: "Tailwind", icon: SiTailwindcss },
+      { name: "Bootstrap", icon: SiBootstrap },
+    ]
+  },
+  {
+    title: "Backend",
+    description: "Serveur & base de données",
+    technologies: [
+      { name: "PHP", icon: SiPhp },
+      { name: "Symfony", icon: SiSymfony },
+      { name: "MySQL", icon: SiMysql },
+      { name: "Next.js", icon: SiNextdotjs },
+      { name: "Java", icon: FaJava },
+      { name: "Python", icon: SiPython }
+    ]
+  },
+  {
+    title: "Outils",
+    description: "Développement , design & Collaboration",
+    technologies: [
+      { name: "Git", icon: SiGit },
+      { name: "Github", icon: SiGithub },
+      { name: "Unity", icon: SiUnity },
+      { name: "Figma", icon: SiFigma },
+      { name: "WordPress", icon: SiWordpress },
+      { name: "Vite", icon: SiVite },
+      { name: "Slack", icon: SiSlack },
+      { name: "Trello", icon: SiTrello },
+    ]
+  }
 ];  

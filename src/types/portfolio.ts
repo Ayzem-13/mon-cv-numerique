@@ -26,3 +26,14 @@ export interface ContactInfo {
   href?: string;
   description: string;
 }
+
+export interface Technology {
+  name: string;
+  icon: React.ComponentType<{ className?: string }>;
+}
+
+export interface SkillCategory {
+  title: string;
+  description: string;
+  technologies: Technology[];
+}
