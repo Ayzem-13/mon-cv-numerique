@@ -1,5 +1,6 @@
 import { LuLinkedin, LuExternalLink } from 'react-icons/lu';
-import { ContactInfo } from "../../data/mockData";
+import { ContactInfo } from "../data/mockData";
+import MotionOnScroll from '../components/MotionOnScroll';
 
 
 
@@ -74,10 +75,9 @@ export default function Contact() {
                         {ContactInfo.map((contact, index) => {
                             const IconComponent = contact.icon;
                             return (
+                                <MotionOnScroll key={contact.label} delay={index * 0.04}>
                                 <div 
-                                    key={contact.label}
                                     className="group bg-white dark:bg-neutral-900 rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-500 border-2 border-transparent hover:border-green-zzz/50 transform hover:-translate-y-2"
-                                    style={{ animationDelay: `${index * 0.1}s` }}
                                 >
                                     <div className="flex items-start space-x-4">
                                         <div className="flex-shrink-0">
@@ -116,6 +116,7 @@ export default function Contact() {
                                         </div>
                                     </div>
                                 </div>
+                                </MotionOnScroll>
                             );
                         })}
                     </div>

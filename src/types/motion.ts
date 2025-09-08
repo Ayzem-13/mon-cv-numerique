@@ -1,0 +1,8 @@
+import type { ReactNode } from "react";
+
+export type Props = {
+    children: ReactNode;
+    className?: string;
+    delay?: number;
+    y?: number;
+};

@@ -1,5 +1,6 @@
-import { Projets } from "../../data/mockData";
+import { Projets } from "../data/mockData";
 import { LuExternalLink, LuGithub, LuCalendar, LuTag, LuEye } from "react-icons/lu";
+import MotionOnScroll from "../components/MotionOnScroll";
 
 export default function Project() {
     return (
@@ -22,10 +23,9 @@ export default function Project() {
                 {/* Projects Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {Projets.map((project, index) => (
+                        <MotionOnScroll key={project.id} delay={index * 0.06}>
                         <div 
-                            key={project.id} 
                             className="group bg-white/80 dark:bg-neutral-900/80 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden border border-neutral-200/50 dark:border-neutral-700/50 hover:border-green-zzz/50 transform hover:-translate-y-3 hover:bg-white/90 dark:hover:bg-neutral-900/90"
-                            style={{ animationDelay: `${index * 0.2}s` }}
                         >
                             {/* Project Image */}
                             <div className="relative overflow-hidden h-48 bg-gradient-to-br from-neutral-200 to-neutral-300 dark:from-neutral-700 dark:to-neutral-600">
@@ -134,6 +134,7 @@ export default function Project() {
                                 </div>
                             </div>
                         </div>
+                        </MotionOnScroll>
                     ))}
                 </div>
 

@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { skillsData } from '../../data/mockData';
+import { skillsData } from '../data/mockData';
+import MotionOnScroll from '../components/MotionOnScroll';
 
 export default function AboutMe() {
     const [activeSkillCategory, setActiveSkillCategory] = useState<string>('Frontend');
@@ -73,6 +74,7 @@ export default function AboutMe() {
                                 <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-green-zzz via-neutral-300 to-neutral-200 dark:via-neutral-600 dark:to-neutral-700"></div>
 
                                 {/* Formation */}
+                                <MotionOnScroll delay={0.02}>
                                 <div className="relative flex items-start gap-6 group">
                                     <div className="relative z-10">
                                         <div className="w-12 h-12 bg-green-zzz rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
@@ -96,8 +98,10 @@ export default function AboutMe() {
                                         </div>
                                     </div>
                                 </div>
+                                </MotionOnScroll>
 
                                 {/* BUT Informatique */}
+                                <MotionOnScroll delay={0.04}>
                                 <div className="relative flex items-start gap-6 group">
                                     <div className="relative z-10">
                                         <div className="w-12 h-12 bg-neutral-100 dark:bg-neutral-700 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300 border-2 border-green-zzz/30">
@@ -124,8 +128,10 @@ export default function AboutMe() {
                                         </div>
                                     </div>
                                 </div>
+                                </MotionOnScroll>
 
                                 {/* Baccalauréat */}
+                                <MotionOnScroll delay={0.06}>
                                 <div className="relative flex items-start gap-6 group">
                                     <div className="relative z-10">
                                         <div className="w-12 h-12 bg-neutral-100 dark:bg-neutral-700 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
@@ -149,6 +155,7 @@ export default function AboutMe() {
                                         </div>
                                     </div>
                                 </div>
+                                </MotionOnScroll>
                             </div>
                         </div>
 
@@ -163,8 +170,9 @@ export default function AboutMe() {
 
                             <div className="space-y-6">
                                 {/* Stage PostLab */}
-                                <div className="group">
-                                    <div className="bg-white dark:bg-neutral-800 rounded-xl p-6 shadow-sm border border-neutral-100 dark:border-neutral-700 group-hover:shadow-lg transition-all duration-300">
+                                        <MotionOnScroll delay={0.02}>
+                                        <div className="group">
+                                            <div className="bg-white dark:bg-neutral-800 rounded-xl p-6 shadow-sm border border-neutral-100 dark:border-neutral-700 group-hover:shadow-lg transition-all duration-300">
                                         <div className="flex items-start justify-between mb-4">
                                             <div className="flex items-center gap-3">
                                                 <div className="w-3 h-3 bg-green-zzz rounded-full animate-pulse"></div>
@@ -202,7 +210,9 @@ export default function AboutMe() {
                                         </div>
                                     </div>
                                 </div>
+                                </MotionOnScroll>
 
+                                <MotionOnScroll delay={0.04}>
                                 <div className="group">
                                     <div className="bg-white dark:bg-neutral-800 rounded-xl p-6 shadow-sm border border-neutral-100 dark:border-neutral-700 group-hover:shadow-lg transition-all duration-300">
                                         <div className="flex items-start justify-between mb-4">
@@ -242,6 +252,7 @@ export default function AboutMe() {
                                         </div>
                                     </div>
                                 </div>
+                                </MotionOnScroll>
                             </div>
                         </div>
                     </div>
@@ -307,20 +318,18 @@ export default function AboutMe() {
                                                 {category.technologies.map((tech, index) => {
                                                     const IconComponent = tech.icon;
                                                     return (
-                                                        <div 
-                                                            key={tech.name} 
-                                                            className="group/tech"
-                                                            style={{ animationDelay: `${index * 0.1}s` }}
-                                                        >
-                                                            <div className="bg-white dark:bg-neutral-700 rounded-2xl p-6 text-center hover:bg-green-zzz/10 dark:hover:bg-green-zzz/20 transition-all duration-300 hover:scale-105 hover:shadow-xl border border-neutral-100 dark:border-neutral-600 hover:border-green-zzz/50 transform">
-                                                                <div className="mb-4 group-hover/tech:scale-110 transition-transform duration-300 flex justify-center">
-                                                                    <IconComponent className="w-8 h-8 text-neutral-700 dark:text-neutral-300 group-hover/tech:text-green-zzz" />
-                                                                </div>
-                                                                <span className="text-sm font-semibold text-neutral-700 dark:text-neutral-300 group-hover/tech:text-green-zzz">
+                                                        <MotionOnScroll key={tech.name} delay={index * 0.02}>
+                                                            <div className="group/tech">
+                                                                <div className="bg-white dark:bg-neutral-700 rounded-2xl p-6 text-center hover:bg-green-zzz/10 dark:hover:bg-green-zzz/20 transition-all duration-300 hover:scale-105 hover:shadow-xl border border-neutral-100 dark:border-neutral-600 hover:border-green-zzz/50 transform">
+                                                                    <div className="mb-4 group-hover/tech:scale-110 transition-transform duration-300 flex justify-center">
+                                                                        <IconComponent className="w-8 h-8 text-neutral-700 dark:text-neutral-300 group-hover/tech:text-green-zzz" />
+                                                                    </div>
+                                                                    <span className="text-sm font-semibold text-neutral-700 dark:text-neutral-300 group-hover/tech:text-green-zzz">
                                                                     {tech.name}
                                                                 </span>
                                                             </div>
-                                                        </div>
+                                                            </div>
+                                                        </MotionOnScroll>
                                                     );
                                                 })}
                                             </div>

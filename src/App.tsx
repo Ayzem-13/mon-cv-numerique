@@ -1,11 +1,11 @@
 
 import Navbar from './components/Navbar'
 import Pagination from './components/Pagination'
-import AboutMe from './components/sections/AboutMe'
-import Contact from './components/sections/Contact'
-import Footer from './components/sections/Footer'
-import Project from './components/sections/project'
-import Welcome from './components/sections/Welcome'
+import AboutMe from './pages/AboutMe'
+import Contact from './pages/Contact'
+import Footer from './pages/Footer'
+import Project from './pages/project'
+import Welcome from './pages/Welcome'
 import './index.css'
 
 function App() {
