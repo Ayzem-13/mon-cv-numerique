@@ -10,7 +10,7 @@ export default function Project() {
                     <div className="inline-flex items-center gap-2 mb-4">
                         <div className="w-2 h-2 bg-green-zzz rounded-full shadow-md animate-pulse"></div>
                         <span className="text-xs sm:text-sm font-semibold text-neutral-600 dark:text-neutral-400 uppercase tracking-widest">
-                            Portfolio Master
+                            Portfolio 
                         </span>
                     </div>
                     <h2 className="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white mb-4">

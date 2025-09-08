@@ -18,3 +18,11 @@ export interface Project {
   imageUrl: string;
   projectUrl: string;
 }
+
+export interface ContactInfo {
+  icon: React.ComponentType<{ className?: string }>;
+  label: string;
+  value: string;
+  href?: string;
+  description: string;
+}

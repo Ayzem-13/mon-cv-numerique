@@ -1,3 +1,4 @@
+import { LuGithub, LuLinkedin, LuMail, LuMapPin, LuPhone } from 'react-icons/lu';
 import type { NavItem, Section } from '../types';
 
 // Route navigation
@@ -38,11 +39,11 @@ export const Projets = [
     title: "Site Web Ananta France",
     subtitle: "C'est un projet Fan basé sur le jeux Ananta",
     description: "Le but de ce site est de relayé l'actualité du jeux pour la communauté francophone faite en collaboration avec 2 personnes et voir plus encore une fois que le jeux sera sortie.",
-    image: "https://media.discordapp.net/attachments/1227164039789150218/1414271010588590141/image.png?ex=68bef604&is=68bda484&hm=2e190fc25acaa0762f23ddbd1fe9dc939b07fff64bcb4d1cdb5a108acf64f746&=&format=webp&quality=lossless",
+    image: "https://media.discordapp.net/attachments/1227164039789150218/1414521868580421773/image.png?ex=68bfdfa6&is=68be8e26&hm=c5f37b9543656abb22fb4d240bf068a35c59794eb8a9259d9f5b488eef78768e&=&format=webp&quality=lossless",
     category: ["Jeu vidéo", "Site Web"],
     date: "01/09/2025",
     status: "En cours",
-    tags: ["Figma", "React", "TypeScript","Css"], 
+    tags: ["Figma", "NextJS", "React", "TypeScript", "TailwindCSS"],
     links: {
       demo: "#",
       github: "#",
@@ -58,7 +59,7 @@ export const Projets = [
     category: ["Site Web"],
     date: "01/09/2025",
     status: "En cours",
-    tags: ["React", "TypeScript","TailwindCSS"],
+    tags: ["React", "TypeScript", "TailwindCSS"],
     links: {
       demo: "http://localhost:5173/cv.pdf",
       github: "https://github.com/ROUBAUD-Axel-2225073b/mon-cv-numerique",
@@ -66,3 +67,41 @@ export const Projets = [
     }
   },
 ];
+
+export const ContactInfo = [
+  {
+    icon: LuPhone,
+    label: "Téléphone",
+    value: "—",
+    href: "",
+    description: "Disponible pour des appels ou SMS"
+  },
+  {
+  icon: LuMail,
+  label: "Email",
+  value: "roubaudaxel2@gmail.com",
+  href: "mailto:roubaudaxel2@gmail.com",
+  description: "Contactez-moi directement"
+},
+{
+  icon: LuMapPin,
+  label: "Localisation",
+  value: "Marseille, France",
+  href: null,
+  description: "Disponible"
+},
+{
+  icon: LuLinkedin,
+  label: "LinkedIn",
+  value: "Axel Roubaud",
+  href: "https://www.linkedin.com/in/axel-roubaud-8504252b0/",
+  description: "Profil professionnel"
+},
+{
+  icon: LuGithub,
+  label: "GitHub",
+  value: "ROUBAUD-Axel-2225073b",
+  href: "https://github.com/ROUBAUD-Axel-2225073b",
+  description: "Mes projets et contributions"
+}
+];  
