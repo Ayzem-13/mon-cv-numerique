@@ -18,7 +18,6 @@ export const navItems: NavItem[] = [
   { label: 'À propos', href: '#about' },
   { label: 'Projets', href: '#projects' },
   { label: 'Contact', href: '#contact' },
-  { label: 'CV', href: '/cv.pdf' },
 ];
 
 export const sections: Section[] = [
