@@ -6,7 +6,7 @@ import { ContactInfo } from "../../data/mockData";
 export default function Contact() {
 
     return (
-        <section id="contact" className="py-20 bg-neutral-50 dark:bg-neutral-800 relative overflow-hidden">
+        <section id="contact" className="py-20 bg-gradient-to-br from-neutral-100  dark:from-neutral-900 dark:via-neutral-800 dark:to-neutral-900 ">
             <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Section Header */}
                 <div className="text-center mb-16">
@@ -17,7 +17,7 @@ export default function Contact() {
                         </span>
                     </div>
                     <h2 className="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white mb-4">
-                        Restons en Contact
+                        Contact
                     </h2>
                     <div className="w-20 h-1 bg-gradient-to-r from-green-zzz to-transparent mx-auto rounded-full"></div>
                 </div>
@@ -28,11 +28,11 @@ export default function Contact() {
                     <div className="space-y-8">
                         <div className="space-y-6">
                             <h3 className="text-2xl md:text-3xl font-bold text-neutral-900 dark:text-white">
-                                Discutons de votre projet
+                                Recherche d'alternance
                             </h3>
                             <div className="space-y-4">
                                 <p className="text-lg text-neutral-700 dark:text-neutral-300 leading-relaxed">
-                                    Je suis actuellement à la recherche d'une <strong>alternance en développement web</strong> 
+                                    Je suis actuellement à la recherche d'une <strong>alternance en développement web </strong> 
                                     avec un rythme de 1/3 école, 2/3 entreprise.
                                 </p>
                                 <p className="text-lg text-neutral-700 dark:text-neutral-300 leading-relaxed">

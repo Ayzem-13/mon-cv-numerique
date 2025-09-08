@@ -3,9 +3,9 @@ import { LuExternalLink, LuGithub, LuCalendar, LuTag, LuEye } from "react-icons/
 
 export default function Project() {
     return (
-        <section id="projects" className="py-20 bg-neutral-100 dark:bg-neutral-800 relative overflow-hidden">
+        <section id="projects" className="py-20 bg-gradient-to-br from-white via-neutral-50 to-neutral-100 dark:from-neutral-800 dark:via-neutral-900 dark:to-neutral-800 relative overflow-hidden">
+
             <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                {/* Section Header */}
                 <div className="text-center mb-16">
                     <div className="inline-flex items-center gap-2 mb-4">
                         <div className="w-2 h-2 bg-green-zzz rounded-full shadow-md animate-pulse"></div>
@@ -24,7 +24,7 @@ export default function Project() {
                     {Projets.map((project, index) => (
                         <div 
                             key={project.id} 
-                            className="group bg-white dark:bg-neutral-900 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden border-2 border-transparent hover:border-green-zzz/50 transform hover:-translate-y-3"
+                            className="group bg-white/80 dark:bg-neutral-900/80 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden border border-neutral-200/50 dark:border-neutral-700/50 hover:border-green-zzz/50 transform hover:-translate-y-3 hover:bg-white/90 dark:hover:bg-neutral-900/90"
                             style={{ animationDelay: `${index * 0.2}s` }}
                         >
                             {/* Project Image */}
@@ -86,7 +86,7 @@ export default function Project() {
                                     {project.tags.map((tag, tagIndex) => (
                                         <span 
                                             key={tagIndex}
-                                            className="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 rounded-full border border-neutral-200 dark:border-neutral-600"
+                                            className="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium bg-white/80 dark:bg-neutral-800/80 backdrop-blur-sm text-neutral-700 dark:text-neutral-300 rounded-full border border-neutral-200/50 dark:border-neutral-600/50"
                                         >
                                             <LuTag size={10} />
                                             {tag}
