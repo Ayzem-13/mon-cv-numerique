@@ -71,7 +71,7 @@ export const Projets = [
     status: "En cours",
     tags: ["React", "TypeScript", "TailwindCSS"],
     links: {
-      demo: "http://localhost:5173/cv.pdf",
+      demo: "https://axel-roubaud-cv.netlify.app/",
       github: "https://github.com/ROUBAUD-Axel-2225073b/mon-cv-numerique",
       external: "#"
     }
