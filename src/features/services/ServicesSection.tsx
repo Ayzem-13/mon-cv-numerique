@@ -5,7 +5,6 @@ import { BlurFade } from '@/components/ui/blur-fade'
 import { BorderBeam } from '@/components/ui/border-beam'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
-import { elapsedSince, formatMonth } from '@/lib/format'
 import { services } from './data/services'
 import type { Service } from '@/types'
 
@@ -14,17 +13,6 @@ const STATUS = {
   build: { label: 'En cours', dot: 'bg-amber-400', text: 'text-amber-400' },
   idle: { label: 'Archivé', dot: 'bg-muted-foreground', text: 'text-muted-foreground' },
 } as const
-
-function Meta({ service }: { service: Service }) {
-  if (service.status === 'live') return <>en ligne depuis {elapsedSince(service.since)}</>
-  if (service.until)
-    return (
-      <>
-        {formatMonth(service.since)} — {formatMonth(service.until)}
-      </>
-    )
-  return <>démarré en {formatMonth(service.since)}</>
-}
 
 function ProjectRow({ service, index }: { service: Service; index: number }) {
   const status = STATUS[service.status]
@@ -61,9 +49,7 @@ function ProjectRow({ service, index }: { service: Service; index: number }) {
               <span className={cn('size-1.5 rounded-full', status.dot)} />
               <span className={status.text}>{status.label}</span>
             </span>
-            <span className="font-mono text-xs text-muted-foreground">
-              <Meta service={service} />
-            </span>
+            <span className="font-mono text-xs text-muted-foreground">{service.role}</span>
           </div>
 
           <h3 className="text-2xl font-semibold tracking-tight sm:text-3xl">{service.name}</h3>
@@ -81,7 +67,20 @@ function ProjectRow({ service, index }: { service: Service; index: number }) {
             ))}
           </ul>
 
-          {(service.url || service.repo) && (
+          {service.highlights && (
+            <ul className="flex flex-col gap-1.5">
+              {service.highlights.map((item) => (
+                <li key={item} className="flex gap-2 text-sm text-muted-foreground">
+                  <span aria-hidden className="text-brand-text">
+                    —
+                  </span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          )}
+
+          {(service.url || service.repo || service.api) && (
             <div className="mt-2 flex flex-wrap gap-2">
               {service.url && (
                 <Button
@@ -101,7 +100,18 @@ function ProjectRow({ service, index }: { service: Service; index: number }) {
                   className="rounded-full"
                 >
                   <LuGithub data-icon="inline-start" />
-                  Code
+                  {service.api ? 'Front' : 'Code'}
+                </Button>
+              )}
+              {service.api && (
+                <Button
+                  variant="outline"
+                  size="sm"
+                  render={<a href={service.api} target="_blank" rel="noopener noreferrer" />}
+                  className="rounded-full"
+                >
+                  <LuGithub data-icon="inline-start" />
+                  API
                 </Button>
               )}
             </div>
@@ -129,10 +139,10 @@ export default function ServicesSection() {
         <>
           Ce que je construis,
           <br />
-          <span className="text-brand-text">et ce que je fais tourner</span>
+          <span className="text-brand-text">et ce que je livre</span>
         </>
       }
-      description="Des sites en production que j'administre moi-même, pas seulement des projets d'école."
+      description="Des sites en ligne, des projets d'école menés jusqu'au bout, et une réécriture en cours."
     >
       <div className="flex flex-col gap-6">
         {services.map((service, index) => (

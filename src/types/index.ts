@@ -9,14 +9,15 @@ export type Service = {
   url?: string
   repo?: string
 
+  api?: string
+
   shot?: string
+
+  highlights?: string[]
   role: string
   summary: string
   stack: string[]
   status: Status
-
-  since: string
-  until?: string
 }
 
 export type JournalEntry = {

@@ -12,15 +12,15 @@ export const stackLayers: StackLayer[] = [
       'Astro',
       'TailwindCSS',
       'shadcn/ui',
+      'TanStack Query',
       'Motion',
-      'GSAP',
     ],
   },
   {
     id: 'back',
     label: 'Back',
     hint: 'Services et API',
-    items: ['Java', 'Spring Boot', 'PHP', 'Symfony', 'Bun', 'Elysia', 'Node', 'GraphQL', 'REST'],
+    items: ['Java', 'Spring Boot', 'PHP', 'Symfony', 'NestJS', 'Bun', 'Elysia', 'GraphQL', 'REST'],
   },
   {
     id: 'donnees',
@@ -29,15 +29,15 @@ export const stackLayers: StackLayer[] = [
     items: ['PostgreSQL', 'MySQL', 'Prisma', 'SQL'],
   },
   {
-    id: 'infra',
-    label: 'Infra',
-    hint: 'Déploiement et exploitation',
-    items: ['Docker', 'VPS Ubuntu', 'Coolify', 'Pterodactyl', 'GitHub Actions', 'GitLab CI'],
+    id: 'livraison',
+    label: 'Livraison',
+    hint: 'Conteneurs et intégration continue',
+    items: ['Docker', 'GitHub Actions', 'GitLab CI'],
   },
   {
     id: 'qualite',
     label: 'Qualité',
     hint: 'Tests et méthode',
-    items: ['Playwright', 'Tests E2E', 'Git', 'Agile / Scrum', 'Revue de code'],
+    items: ['Playwright', 'Tests E2E', 'Zod', 'Git', 'Agile / Scrum', 'Revue de code'],
   },
 ]

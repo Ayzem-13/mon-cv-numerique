@@ -1,125 +1,114 @@
 import { useMemo, useState } from 'react'
-import { LuMenu, LuX } from 'react-icons/lu'
+import { LuGithub, LuLinkedin, LuMail } from 'react-icons/lu'
 import {
-  AnimatePresence,
-  motion,
-  useMotionValueEvent,
-  useReducedMotion,
-  useScroll,
-} from 'motion/react'
+  MobileNav,
+  MobileNavHeader,
+  MobileNavMenu,
+  MobileNavToggle,
+  Navbar,
+  NavBody,
+  NavItems,
+} from '@/components/ui/resizable-navbar'
 import { navItems } from '@/config/navigation'
 import { profile } from '@/config/profile'
 import { useActiveSection } from '@/hooks'
-import { EASE_OUT } from '@/lib/motion'
 import { cn } from '@/lib/utils'
 import ThemeToggle from './ThemeToggle'
 
-export default function Header() {
-  const { scrollY } = useScroll()
-  const reduceMotion = useReducedMotion()
-  const [scrolled, setScrolled] = useState(false)
-  const [open, setOpen] = useState(false)
+const SOCIALS = [
+  { label: 'GitHub', href: `https://github.com/${profile.githubUsername}`, Icon: LuGithub },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/axel-roubaud/', Icon: LuLinkedin },
+  { label: 'Email', href: 'mailto:roubaudaxel2@gmail.com', Icon: LuMail },
+]
 
+function Wordmark() {
+  return (
+    <a
+      href="#accueil"
+      className="relative z-20 px-2 py-1 text-sm font-semibold tracking-tight transition-colors hover:text-brand-text"
+    >
+      {profile.firstName} {profile.lastName}
+    </a>
+  )
+}
+
+function Actions() {
+  return (
+    <div className="relative z-20 flex items-center gap-1">
+      {SOCIALS.map(({ label, href, Icon }) => (
+        <a
+          key={label}
+          href={href}
+          target="_blank"
+          rel="noreferrer"
+          aria-label={label}
+          className="flex size-9 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+        >
+          <Icon className="size-4" />
+        </a>
+      ))}
+      <ThemeToggle />
+    </div>
+  )
+}
+
+export default function Header() {
+  const [open, setOpen] = useState(false)
   const ids = useMemo(() => navItems.map((item) => item.id), [])
   const activeId = useActiveSection(ids, 'accueil')
-  const active = navItems.find((item) => item.id === activeId) ?? navItems[0]
 
-  useMotionValueEvent(scrollY, 'change', (latest) => setScrolled(latest > 40))
+  const items = navItems.map((item) => ({ name: item.label, link: `#${item.id}` }))
 
   return (
-    <header
-      className={cn(
-        'fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300',
-        scrolled ? 'border-border bg-background/85 backdrop-blur-md' : 'border-transparent'
-      )}
-    >
-      <div className="mx-auto flex h-14 max-w-6xl items-center gap-4 px-5 sm:px-8">
-        <a
-          href="#accueil"
-          className="flex min-w-0 items-baseline gap-2 text-xs transition-colors hover:text-brand-text"
-        >
-          <span className="font-bold tracking-tight">
-            {profile.firstName} {profile.lastName}
-          </span>
-          <span className="hidden text-muted-foreground sm:inline">/</span>
-          <span className="hidden truncate text-muted-foreground sm:inline">{active.label}</span>
-        </a>
+    <Navbar>
+      <NavBody>
+        <Wordmark />
+        <NavItems items={items} />
+        <Actions />
+      </NavBody>
 
-        <nav
-          aria-label="Navigation principale"
-          className="ml-auto hidden items-center gap-6 md:flex"
-        >
-          {navItems.map((item) => {
-            const isActive = item.id === activeId
-            return (
+      <MobileNav>
+        <MobileNavHeader>
+          <Wordmark />
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
+            <MobileNavToggle isOpen={open} onClick={() => setOpen(!open)} />
+          </div>
+        </MobileNavHeader>
+
+        <MobileNavMenu isOpen={open} onClose={() => setOpen(false)}>
+          {navItems.map((item) => (
+            <a
+              key={item.id}
+              href={`#${item.id}`}
+              onClick={() => setOpen(false)}
+              aria-current={item.id === activeId ? 'page' : undefined}
+              className={cn(
+                'flex w-full items-baseline gap-3 py-1 transition-colors',
+                item.id === activeId ? 'font-semibold text-brand-text' : 'text-foreground'
+              )}
+            >
+              <span className="font-mono text-xs text-muted-foreground">{item.index}</span>
+              {item.label}
+            </a>
+          ))}
+
+          <div className="flex items-center gap-2 pt-4">
+            {SOCIALS.map(({ label, href, Icon }) => (
               <a
-                key={item.id}
-                href={`#${item.id}`}
-                aria-current={isActive ? 'true' : undefined}
-                className={cn(
-                  'group flex items-baseline gap-1.5 text-xs uppercase tracking-wider transition-colors',
-                  isActive ? 'text-foreground' : 'text-muted-foreground hover:text-foreground'
-                )}
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={label}
+                className="flex size-10 items-center justify-center rounded-full border text-foreground transition-colors hover:border-brand hover:bg-brand hover:text-brand-foreground"
               >
-                <span
-                  className={cn('text-[0.65rem]', isActive ? 'text-brand-text' : 'text-border')}
-                >
-                  {item.index}
-                </span>
-                {item.label}
+                <Icon className="size-4" />
               </a>
-            )
-          })}
-        </nav>
-
-        <div className="ml-auto flex items-center gap-2 md:ml-0">
-          <ThemeToggle />
-          <button
-            type="button"
-            onClick={() => setOpen((value) => !value)}
-            aria-expanded={open}
-            aria-label={open ? 'Fermer le menu' : 'Ouvrir le menu'}
-            className="inline-flex size-8 items-center justify-center border border-border text-muted-foreground transition-colors hover:border-brand hover:text-brand-text md:hidden"
-          >
-            {open ? <LuX className="size-3.5" /> : <LuMenu className="size-3.5" />}
-          </button>
-        </div>
-      </div>
-
-      <AnimatePresence>
-        {open && (
-          <motion.nav
-            aria-label="Navigation mobile"
-            initial={reduceMotion ? false : { height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={reduceMotion ? undefined : { height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: EASE_OUT }}
-            className="overflow-hidden border-t border-border bg-background md:hidden"
-          >
-            <ul className="mx-auto max-w-6xl px-5 py-2 sm:px-8">
-              {navItems.map((item) => {
-                const isActive = item.id === activeId
-                return (
-                  <li key={item.id}>
-                    <a
-                      href={`#${item.id}`}
-                      onClick={() => setOpen(false)}
-                      aria-current={isActive ? 'true' : undefined}
-                      className={cn(
-                        'flex items-baseline gap-3 border-b border-dashed border-border py-3 text-sm uppercase tracking-wider last:border-b-0',
-                        isActive ? 'text-brand-text' : 'text-muted-foreground'
-                      )}
-                    >
-                      <span className="text-[0.65rem] text-border">{item.index}</span>
-                      {item.label}
-                    </a>
-                  </li>
-                )
-              })}
-            </ul>
-          </motion.nav>
-        )}
-      </AnimatePresence>
-    </header>
+            ))}
+          </div>
+        </MobileNavMenu>
+      </MobileNav>
+    </Navbar>
   )
 }

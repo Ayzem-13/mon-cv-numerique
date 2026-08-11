@@ -1,15 +1,16 @@
-import { Boxes, Database, Layers, Server, ShieldCheck } from 'lucide-react'
+import { Database, Layers, Rocket, Server, ShieldCheck } from 'lucide-react'
 import Section from '@/components/Section'
 import { BlurFade } from '@/components/ui/blur-fade'
 import { Marquee } from '@/components/ui/marquee'
 import { cn } from '@/lib/utils'
 import { stackLayers } from './data/stack'
+import { techIcons } from './data/techIcons'
 
 const ICONS: Record<string, typeof Layers> = {
   front: Layers,
   back: Server,
   donnees: Database,
-  infra: Boxes,
+  livraison: Rocket,
   qualite: ShieldCheck,
 }
 
@@ -17,8 +18,25 @@ const SPANS: Record<string, string> = {
   front: 'lg:col-span-2',
   back: 'lg:col-span-2',
   donnees: 'lg:col-span-1',
-  infra: 'lg:col-span-1',
+  livraison: 'lg:col-span-1',
   qualite: 'lg:col-span-2',
+}
+
+function TechChip({ name }: { name: string }) {
+  const tech = techIcons[name]
+
+  return (
+    <li className="group/chip inline-flex items-center gap-2 rounded-lg border bg-muted/40 px-2.5 py-1.5 text-xs transition-colors hover:border-brand/30 hover:bg-muted">
+      {tech && (
+        <tech.Icon
+          aria-hidden
+          className="size-3.5 shrink-0 opacity-80 transition-opacity group-hover/chip:opacity-100"
+          style={{ color: tech.color }}
+        />
+      )}
+      <span className="text-foreground/90">{name}</span>
+    </li>
+  )
 }
 
 export default function StackSection() {
@@ -33,21 +51,21 @@ export default function StackSection() {
         <>
           Du composant React
           <br />
-          <span className="text-brand-text">jusqu'au serveur</span>
+          <span className="text-brand-text">jusqu'à la base de données</span>
         </>
       }
-      description="Je ne m'arrête pas à l'interface : je conçois les API, modélise les données et gère la mise en production."
+      description="Je ne m'arrête pas à l'interface : je conçois les API, modélise les données et livre par intégration continue."
     >
       <div className="grid gap-4 lg:grid-cols-4">
         {stackLayers.map((layer, index) => {
           const Icon = ICONS[layer.id] ?? Layers
-          const highlight = layer.id === 'infra'
+          const highlight = layer.id === 'back'
 
           return (
             <BlurFade key={layer.id} delay={0.05 * index} inView className={SPANS[layer.id]}>
               <div
                 className={cn(
-                  'group relative flex h-full flex-col gap-4 overflow-hidden rounded-2xl border bg-card p-6 transition-colors duration-300',
+                  'group relative flex h-full flex-col gap-4 rounded-2xl border bg-card p-6 transition-colors duration-300',
                   highlight ? 'border-brand/30' : 'hover:border-brand/20'
                 )}
               >
@@ -70,12 +88,7 @@ export default function StackSection() {
 
                 <ul className="mt-auto flex flex-wrap gap-1.5">
                   {layer.items.map((item) => (
-                    <li
-                      key={item}
-                      className="rounded-md border bg-muted/40 px-2 py-1 font-mono text-[0.7rem] text-muted-foreground"
-                    >
-                      {item}
-                    </li>
+                    <TechChip key={item} name={item} />
                   ))}
                 </ul>
               </div>
@@ -86,24 +99,36 @@ export default function StackSection() {
 
       <div className="relative mt-10 flex w-full flex-col gap-3 overflow-hidden">
         <Marquee pauseOnHover className="[--duration:40s]">
-          {all.slice(0, half).map((item) => (
-            <span
-              key={item}
-              className="rounded-full border bg-card px-4 py-1.5 font-mono text-xs text-muted-foreground"
-            >
-              {item}
-            </span>
-          ))}
+          {all.slice(0, half).map((item) => {
+            const tech = techIcons[item]
+            return (
+              <span
+                key={item}
+                className="inline-flex items-center gap-2 rounded-full border bg-card px-4 py-1.5 text-xs"
+              >
+                {tech && (
+                  <tech.Icon aria-hidden className="size-3.5" style={{ color: tech.color }} />
+                )}
+                {item}
+              </span>
+            )
+          })}
         </Marquee>
         <Marquee reverse pauseOnHover className="[--duration:40s]">
-          {all.slice(half).map((item) => (
-            <span
-              key={item}
-              className="rounded-full border bg-card px-4 py-1.5 font-mono text-xs text-muted-foreground"
-            >
-              {item}
-            </span>
-          ))}
+          {all.slice(half).map((item) => {
+            const tech = techIcons[item]
+            return (
+              <span
+                key={item}
+                className="inline-flex items-center gap-2 rounded-full border bg-card px-4 py-1.5 text-xs"
+              >
+                {tech && (
+                  <tech.Icon aria-hidden className="size-3.5" style={{ color: tech.color }} />
+                )}
+                {item}
+              </span>
+            )
+          })}
         </Marquee>
         <div className="pointer-events-none absolute inset-y-0 left-0 w-1/6 bg-gradient-to-r from-background" />
         <div className="pointer-events-none absolute inset-y-0 right-0 w-1/6 bg-gradient-to-l from-background" />
