@@ -9,7 +9,7 @@ export const profile: Profile = {
   timeZone: 'Europe/Paris',
   situation: 'Alternance chez Viaxoft · Mastère Esimed',
   pitch:
-    "Je construis des applications web et je les exploite : de la conception des composants au déploiement continu, jusqu'aux serveurs qui les font tourner.",
+    "Je construis des applications web de bout en bout : l'interface, l'API, la base de données et la mise en production par intégration continue.",
   cvPath: '/CV_Axel_Roubaud.pdf',
   githubUsername: 'Ayzem-13',
 }
