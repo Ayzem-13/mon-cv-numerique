@@ -28,6 +28,8 @@ export type JournalEntry = {
   kind: 'Alternance' | 'Stage' | 'Formation' | 'Projet'
   title: string
   detail: string
+
+  missions?: string[]
   stack?: string[]
 }
 

@@ -8,8 +8,13 @@ export const experiences: JournalEntry[] = [
     org: 'Viaxoft',
     kind: 'Alternance',
     title: 'Développeur full stack',
-    detail:
-      "Éditeur de logiciel SaaS pour agences de voyage et tour-opérateurs. Création et intégration d'un microservice de devis avec analyse IA, prochainement testé chez des clients. Refonte du moteur de recherche interne, API REST pour la migration d'EasyRedmine vers OpenProject, et connecteur Odoo pour les tickets de support réalisé en autonomie.",
+    detail: 'Éditeur de logiciel SaaS pour agences de voyage et tour-opérateurs.',
+    missions: [
+      'Microservice de création de devis avec analyse IA, prochainement testé chez des clients',
+      'Refonte du moteur de recherche interne',
+      "API REST pour la migration d'EasyRedmine vers OpenProject",
+      'Connecteur Odoo pour les tickets de support, réalisé en autonomie',
+    ],
     stack: [
       'React',
       'TypeScript',
