@@ -42,7 +42,7 @@ function Actions() {
           target="_blank"
           rel="noreferrer"
           aria-label={label}
-          className="flex size-9 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+          className="flex size-10 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
         >
           <Icon className="size-4" />
         </a>
@@ -84,8 +84,10 @@ export default function Header() {
               onClick={() => setOpen(false)}
               aria-current={item.id === activeId ? 'page' : undefined}
               className={cn(
-                'flex w-full items-baseline gap-3 py-1 transition-colors',
-                item.id === activeId ? 'font-semibold text-brand-text' : 'text-foreground'
+                'flex min-h-11 w-full items-center gap-3 rounded-lg px-2 py-2 text-base transition-colors',
+                item.id === activeId
+                  ? 'bg-accent font-semibold text-brand-text'
+                  : 'text-foreground hover:bg-accent/60'
               )}
             >
               <span className="font-mono text-xs text-muted-foreground">{item.index}</span>
@@ -101,7 +103,7 @@ export default function Header() {
                 target="_blank"
                 rel="noreferrer"
                 aria-label={label}
-                className="flex size-10 items-center justify-center rounded-full border text-foreground transition-colors hover:border-brand hover:bg-brand hover:text-brand-foreground"
+                className="flex size-11 items-center justify-center rounded-full border text-foreground transition-colors hover:border-brand hover:bg-brand hover:text-brand-foreground"
               >
                 <Icon className="size-4" />
               </a>

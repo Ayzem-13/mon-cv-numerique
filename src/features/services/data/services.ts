@@ -30,7 +30,7 @@ export const services: Service[] = [
       'Docker',
       'GitHub Actions',
     ],
-    status: 'build',
+    status: 'idle',
   },
   {
     id: 'lsfive',
@@ -76,6 +76,18 @@ export const services: Service[] = [
       'Réseau social type Twitter : API Elysia sur Bun avec Prisma et PostgreSQL, authentification JWT, et front React 19 piloté par Redux Toolkit.',
     stack: ['Bun', 'Elysia', 'Prisma', 'PostgreSQL', 'JWT', 'React 19', 'Redux'],
     status: 'idle',
+  },
+  {
+    id: 'portfolio-emeric',
+    name: 'Portfolio d’Emeric Lehmann',
+    domain: 'portfolio-emeric.netlify.app',
+    shot: '/shots/emeric.png',
+    url: 'https://portfolio-emeric.netlify.app/',
+    role: 'Conception et développement, pour un camarade',
+    summary:
+      "Site vitrine d'un étudiant en BUT Métiers du multimédia, option création graphique et audiovisuelle : présentation, parcours, compétences et projets. Thème clair et sombre, navigation par sections et repère de progression latéral.",
+    stack: ['React', 'TypeScript', 'Vite', 'TailwindCSS', 'Netlify'],
+    status: 'live',
   },
   {
     id: 'portfolio-v1',

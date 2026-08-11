@@ -54,13 +54,16 @@ export default function ContactSection() {
 
           <dl className="mt-8 divide-y border-t">
             {contactChannels.map((channel) => (
-              <div key={channel.label} className="flex flex-wrap items-center gap-x-4 gap-y-1 py-3">
-                <dt className="flex w-28 shrink-0 items-center gap-2 text-xs uppercase tracking-wider text-muted-foreground">
-                  <channel.icon className="size-3.5" aria-hidden />
+              <div
+                key={channel.label}
+                className="flex flex-col gap-1.5 py-4 sm:flex-row sm:items-center sm:gap-4"
+              >
+                <dt className="flex items-center gap-2 text-xs uppercase tracking-wider text-muted-foreground sm:w-28 sm:shrink-0">
+                  <channel.icon className="size-3.5 shrink-0" aria-hidden />
                   {channel.label}
                 </dt>
 
-                <dd className="min-w-0 flex-1">
+                <dd className="min-w-0 sm:flex-1">
                   {channel.href ? (
                     <a
                       href={channel.href}
@@ -68,12 +71,12 @@ export default function ContactSection() {
                         target: '_blank',
                         rel: 'noopener noreferrer',
                       })}
-                      className="text-sm underline-offset-4 transition-colors hover:text-brand-text hover:underline"
+                      className="break-all text-sm underline-offset-4 transition-colors hover:text-brand-text hover:underline"
                     >
                       {channel.value}
                     </a>
                   ) : (
-                    <span className="text-sm">{channel.value}</span>
+                    <span className="break-all text-sm">{channel.value}</span>
                   )}
                 </dd>
 
@@ -82,7 +85,7 @@ export default function ContactSection() {
                     type="button"
                     onClick={() => copy(channel.label, channel.value)}
                     aria-label={`Copier ${channel.label.toLowerCase()}`}
-                    className="inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs text-muted-foreground transition-colors hover:border-brand/40 hover:text-brand-text"
+                    className="inline-flex min-h-9 shrink-0 items-center gap-1.5 self-start rounded-full border px-3 text-xs text-muted-foreground transition-colors hover:border-brand/40 hover:text-brand-text sm:self-auto"
                   >
                     {copied === channel.label ? (
                       <>

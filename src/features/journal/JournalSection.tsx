@@ -1,41 +1,65 @@
-import { Briefcase, GraduationCap } from 'lucide-react'
+import { GraduationCap } from 'lucide-react'
 import Section from '@/components/Section'
 import { BlurFade } from '@/components/ui/blur-fade'
-import { TracingBeam } from '@/components/ui/tracing-beam'
 import { cn } from '@/lib/utils'
 import { formatRange } from '@/lib/format'
 import { education, experiences } from './data/journal'
 import type { JournalEntry } from '@/types'
 
-const KIND_TONE: Record<string, string> = {
-  Alternance: 'border-brand/40 text-brand-text',
-  Stage: 'border-border text-muted-foreground',
-  Formation: 'border-border text-muted-foreground',
-  Projet: 'border-amber-400/40 text-amber-400',
-}
-
-function Entry({ entry }: { entry: JournalEntry }) {
+function Experience({
+  entry,
+  current,
+  last,
+}: {
+  entry: JournalEntry
+  current: boolean
+  last: boolean
+}) {
   return (
-    <BlurFade inView>
-      <article className="rounded-2xl border bg-card p-6 transition-colors duration-300 hover:border-brand/25 sm:p-8">
-        <div className="flex flex-wrap items-center gap-2">
+    <li className="relative grid gap-4 pb-10 last:pb-0 sm:grid-cols-[10rem_1fr] sm:gap-8">
+      <div className="flex items-center gap-3 sm:flex-col sm:items-end sm:gap-1 sm:pt-1 sm:text-right">
+        <time className="font-mono text-xs text-muted-foreground">
+          {formatRange(entry.from, entry.to)}
+        </time>
+        <span
+          className={cn(
+            'text-[0.7rem] uppercase tracking-wider',
+            current ? 'text-brand-text' : 'text-muted-foreground/70'
+          )}
+        >
+          {entry.kind}
+        </span>
+      </div>
+
+      <div className="relative sm:pl-8">
+        <span
+          aria-hidden
+          className={cn(
+            'absolute left-0 top-2 hidden size-2.5 rounded-full ring-4 ring-background sm:block',
+            current ? 'bg-brand' : 'bg-border'
+          )}
+        />
+        {!last && (
           <span
-            className={cn(
-              'rounded-full border px-2.5 py-0.5 font-mono text-[0.7rem] uppercase tracking-wider',
-              KIND_TONE[entry.kind]
-            )}
-          >
-            {entry.kind}
-          </span>
-          <time className="font-mono text-xs text-muted-foreground">
-            {formatRange(entry.from, entry.to)}
-          </time>
-        </div>
+            aria-hidden
+            className="absolute left-[4px] top-6 hidden h-[calc(100%+1.5rem)] w-px bg-border sm:block"
+          />
+        )}
 
-        <h4 className="mt-4 text-xl font-semibold tracking-tight">{entry.org}</h4>
-        <p className="mt-1 text-sm text-brand-text">{entry.title}</p>
+        <h4 className="text-xl font-semibold tracking-tight sm:text-2xl">{entry.org}</h4>
+        <p className="mt-0.5 text-sm text-muted-foreground">{entry.title}</p>
+        <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{entry.detail}</p>
 
-        <p className="mt-4 text-pretty leading-relaxed text-muted-foreground">{entry.detail}</p>
+        {entry.missions && (
+          <ul className="mt-4 flex flex-col gap-2">
+            {entry.missions.map((mission) => (
+              <li key={mission} className="flex gap-2.5 text-sm leading-relaxed">
+                <span aria-hidden className="mt-2 size-1 shrink-0 rounded-full bg-brand" />
+                <span>{mission}</span>
+              </li>
+            ))}
+          </ul>
+        )}
 
         {entry.stack && (
           <ul className="mt-4 flex flex-wrap gap-1.5">
@@ -49,19 +73,8 @@ function Entry({ entry }: { entry: JournalEntry }) {
             ))}
           </ul>
         )}
-      </article>
-    </BlurFade>
-  )
-}
-
-function GroupHeading({ icon: Icon, label }: { icon: typeof Briefcase; label: string }) {
-  return (
-    <div className="mb-6 flex items-center gap-3">
-      <span className="flex size-9 items-center justify-center rounded-full border bg-card">
-        <Icon className="size-4 text-brand-text" />
-      </span>
-      <h3 className="text-sm font-semibold uppercase tracking-[0.15em]">{label}</h3>
-    </div>
+      </div>
+    </li>
   )
 }
 
@@ -72,32 +85,44 @@ export default function JournalSection() {
       eyebrow="Parcours"
       title={
         <>
-          Deux ans en entreprise,
-          <br />
-          <span className="text-brand-text">cinq ans de formation</span>
+          En entreprise <span className="text-brand-text">depuis 2024</span>
         </>
       }
-      description="Du BUT Informatique au Mastère en alternance, en passant par deux stages."
+      description="Deux stages, puis une alternance chez un éditeur SaaS, en parallèle du Mastère."
     >
-      <TracingBeam className="px-6">
-        <div className="mx-auto max-w-3xl">
-          <GroupHeading icon={Briefcase} label="Expériences" />
-          <div className="flex flex-col gap-4">
-            {experiences.map((entry) => (
-              <Entry key={entry.id} entry={entry} />
-            ))}
-          </div>
+      <ol className="flex flex-col">
+        {experiences.map((entry, index) => (
+          <BlurFade key={entry.id} delay={0.06 * index} inView>
+            <Experience
+              entry={entry}
+              current={index === 0}
+              last={index === experiences.length - 1}
+            />
+          </BlurFade>
+        ))}
+      </ol>
 
-          <div className="mt-14">
-            <GroupHeading icon={GraduationCap} label="Formation" />
-            <div className="flex flex-col gap-4">
-              {education.map((entry) => (
-                <Entry key={entry.id} entry={entry} />
-              ))}
-            </div>
-          </div>
+      <div className="mt-16 border-t pt-10">
+        <div className="mb-6 flex items-center gap-3">
+          <GraduationCap className="size-4 text-muted-foreground" />
+          <h3 className="text-sm font-semibold uppercase tracking-[0.15em]">Formation</h3>
         </div>
-      </TracingBeam>
+
+        <div className="grid gap-4 sm:grid-cols-2">
+          {education.map((entry, index) => (
+            <BlurFade key={entry.id} delay={0.06 * index} inView>
+              <article className="flex h-full flex-col rounded-2xl border bg-card p-6">
+                <time className="font-mono text-xs text-muted-foreground">
+                  {formatRange(entry.from, entry.to)}
+                </time>
+                <h4 className="mt-2 font-semibold leading-snug tracking-tight">{entry.title}</h4>
+                <p className="mt-1 text-sm text-muted-foreground">{entry.org}</p>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{entry.detail}</p>
+              </article>
+            </BlurFade>
+          ))}
+        </div>
+      </div>
     </Section>
   )
 }
