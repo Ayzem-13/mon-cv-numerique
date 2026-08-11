@@ -2,35 +2,35 @@ name: Pull Request Check
 
 on:
   pull_request:
-    branches: [ master, main ]
+    branches: [master, main]
 
 jobs:
   lint-and-build:
     runs-on: ubuntu-latest
-    
+
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-      
-    - name: Install pnpm
-      uses: pnpm/action-setup@v4
-      with:
-        version: 8
-        
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '20'
-        cache: 'pnpm'
-        
-    - name: Install dependencies
-      run: pnpm install
-      
-    - name: Run linter
-      run: pnpm run lint
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Type checking
-      run: pnpm run type-check
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 8
 
-    - name: Build check
-      run: pnpm run build
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Run linter
+        run: pnpm run lint
+
+      - name: Type checking
+        run: pnpm run type-check
+
+      - name: Build check
+        run: pnpm run build

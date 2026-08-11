@@ -1,13 +1,24 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CV Numerique</title>
+    <title>Axel Roubaud — Développeur full stack</title>
+    <meta
+      name="description"
+      content="Développeur full stack à Marseille, en alternance chez Viaxoft. Je construis des applications web et j'exploite les serveurs qui les font tourner."
+    />
+    <meta name="theme-color" content="#212121" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Axel Roubaud — Développeur full stack" />
+    <meta
+      property="og:description"
+      content="Trois sites en production, une infrastructure que j'administre, et le code qui va avec."
+    />
     <script>
-      // Applique le theme avant le premier paint pour eviter un flash de theme clair.
-      (function () {
+      ;(function () {
         try {
           var stored = localStorage.getItem('cv-theme')
           var isDark =
@@ -17,7 +28,6 @@
           document.documentElement.classList.toggle('dark', isDark)
           document.documentElement.style.colorScheme = isDark ? 'dark' : 'light'
         } catch {
-          // localStorage indisponible : React prendra le relais au montage.
         }
       })()
     </script>

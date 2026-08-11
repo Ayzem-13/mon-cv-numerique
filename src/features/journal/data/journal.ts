@@ -1,0 +1,61 @@
+import type { JournalEntry } from '@/types'
+
+export const journal: JournalEntry[] = [
+  {
+    id: 'viaxoft',
+    from: '2025-10',
+    org: 'Viaxoft',
+    kind: 'Alternance',
+    title: 'Développeur full stack',
+    detail:
+      "Éditeur SaaS pour agences de voyage et tour-opérateurs. Conception d'un microservice de création de devis avec analyse IA, testé chez des clients. Refonte du moteur de recherche interne, API REST de migration EasyRedmine vers OpenProject, connecteur Odoo pour le support client réalisé en autonomie.",
+    stack: [
+      'React',
+      'TypeScript',
+      'Java',
+      'Spring Boot',
+      'PostgreSQL',
+      'Playwright',
+      'PHP',
+      'Docker',
+    ],
+  },
+  {
+    id: 'esimed',
+    from: '2025-09',
+    to: '2027-10',
+    org: 'Esimed',
+    kind: 'Formation',
+    title: 'Mastère Expert en architecture et développement logiciel',
+    detail: 'Deuxième année, en alternance. Technopôle de Château-Gombert, Marseille.',
+  },
+  {
+    id: 'postlab',
+    from: '2025-02',
+    to: '2025-06',
+    org: 'PostLab',
+    kind: 'Stage',
+    title: 'Développeur web',
+    detail: 'Application web de formation de formateurs, développée en équipe.',
+    stack: ['Symfony', 'PHP', 'Bootstrap'],
+  },
+  {
+    id: 'iut',
+    from: '2022-09',
+    to: '2025-06',
+    org: "IUT d'Aix-Marseille",
+    kind: 'Formation',
+    title: 'BUT Informatique, parcours réalisation d’applications',
+    detail: 'Trois ans de développement logiciel, bases de données et gestion de projet.',
+  },
+  {
+    id: 'rubambelle',
+    from: '2024-04',
+    to: '2024-06',
+    org: 'Rubambelle',
+    kind: 'Stage',
+    title: 'Développeur web',
+    detail: "Création d'une boutique en ligne, de la maquette à la mise en production.",
+    stack: ['WordPress', 'PHP', 'JavaScript'],
+  },
+]
