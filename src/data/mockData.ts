@@ -12,7 +12,6 @@ import { FaJava } from "react-icons/fa";
 import { TbBrandReactNative } from "react-icons/tb";
 import type { NavItem, Section, SkillCategory } from '../types';
 
-// Route navigation
 export const navItems: NavItem[] = [
   { label: 'Accueil', href: '#welcome' },
   { label: 'À propos', href: '#about' },
