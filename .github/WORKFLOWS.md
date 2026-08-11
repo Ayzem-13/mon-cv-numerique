@@ -5,6 +5,7 @@ Ce projet utilise GitHub Actions pour l'intégration continue (CI).
 ## Workflows disponibles
 
 ### 1. CI Pipeline (`ci-cd.yml`)
+
 - **Déclencheur** : Push sur `master` ou `main`, Pull Requests
 - **Actions** :
   - Installation des dépendances
@@ -15,6 +16,7 @@ Ce projet utilise GitHub Actions pour l'intégration continue (CI).
   - Sauvegarde des artefacts de build (pour les pushes sur master)
 
 ### 2. Pull Request Check (`pr-check.yml`)
+
 - **Déclencheur** : Pull Requests vers `master` ou `main`
 - **Actions** :
   - Vérification du code
@@ -28,7 +30,7 @@ Les fichiers de build sont sauvegardés comme artefacts lors des pushes sur la b
 ## Scripts pnpm disponibles
 
 - `pnpm run dev` - Développement local
-- `pnpm run build` - Build de production  
+- `pnpm run build` - Build de production
 - `pnpm run lint` - Vérification ESLint
 - `pnpm run type-check` - Vérification TypeScript
 - `pnpm run test` - Tests (à configurer)
