@@ -1,4 +1,4 @@
-import { LuGithub, LuLinkedin, LuMail, LuMapPin, LuPhone } from 'react-icons/lu'
+import { LuGithub, LuLinkedin, LuMail, LuMapPin } from 'react-icons/lu'
 import { ageOn } from '@/lib/format'
 import type { ContactChannel, Profile } from '@/types'
 
@@ -29,13 +29,6 @@ export const contactChannels: ContactChannel[] = [
     href: 'mailto:roubaudaxel2@gmail.com',
     copyable: true,
     icon: LuMail,
-  },
-  {
-    label: 'Téléphone',
-    value: '—',
-    href: undefined,
-    copyable: true,
-    icon: LuPhone,
   },
   {
     label: 'GitHub',
