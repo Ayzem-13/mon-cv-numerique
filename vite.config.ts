@@ -12,6 +12,15 @@ export default defineConfig({
   },
   build: {
     outDir: 'dist',
-    sourcemap: true,
+
+    sourcemap: false,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          motion: ['motion', 'motion/react'],
+          calendar: ['react-github-calendar'],
+        },
+      },
+    },
   },
 })
