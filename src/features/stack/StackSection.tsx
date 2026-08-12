@@ -54,7 +54,7 @@ export default function StackSection() {
           <span className="text-brand-text">jusqu'à la base de données</span>
         </>
       }
-      description="Je ne m'arrête pas à l'interface : je conçois les API, modélise les données et livre par intégration continue."
+      description="Ce que je manipule au quotidien, en cours comme en entreprise, de l'interface jusqu'à la mise en production."
     >
       <div className="grid gap-4 lg:grid-cols-4">
         {stackLayers.map((layer, index) => {

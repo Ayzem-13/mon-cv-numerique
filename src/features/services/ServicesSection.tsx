@@ -1,3 +1,5 @@
+import { useRef } from 'react'
+import { motion, useReducedMotion, useScroll, useTransform } from 'motion/react'
 import { ArrowUpRight } from 'lucide-react'
 import { LuGithub } from 'react-icons/lu'
 import Section from '@/components/Section'
@@ -13,28 +15,38 @@ const STATUS = {
   idle: { label: 'Archivé', dot: 'bg-muted-foreground', text: 'text-muted-foreground' },
 } as const
 
-function ProjectRow({ service, index }: { service: Service; index: number }) {
+function ProjectRow({ service, index, total }: { service: Service; index: number; total: number }) {
   const status = STATUS[service.status]
   const flipped = index % 2 === 1
+  const shotRef = useRef<HTMLDivElement>(null)
+  const reduceMotion = useReducedMotion()
+
+  const { scrollYProgress } = useScroll({
+    target: shotRef,
+    offset: ['start end', 'end start'],
+  })
+  const shotY = useTransform(scrollYProgress, [0, 1], ['-4%', '4%'])
 
   return (
     <BlurFade delay={0.05} inView>
       <article className="group relative grid items-center gap-8 overflow-hidden rounded-2xl border bg-card p-6 transition-colors duration-300 hover:border-brand/30 sm:p-8 lg:grid-cols-2 lg:gap-12 lg:p-10">
         <div
+          ref={shotRef}
           className={cn(
             'relative overflow-hidden rounded-xl border bg-muted/30',
             flipped && 'lg:order-2'
           )}
         >
           {service.shot ? (
-            <img
+            <motion.img
+              style={reduceMotion ? undefined : { y: shotY }}
               src={service.shot}
               alt={`Aperçu de ${service.name}`}
               loading="lazy"
               decoding="async"
               width={1280}
               height={800}
-              className="aspect-[16/10] w-full object-cover object-left-top transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+              className="aspect-[16/10] w-full scale-110 object-cover object-left-top"
             />
           ) : (
             <div className="flex aspect-[16/10] items-center justify-center">
@@ -47,6 +59,9 @@ function ProjectRow({ service, index }: { service: Service; index: number }) {
 
         <div className="flex flex-col items-start gap-4">
           <div className="flex flex-wrap items-center gap-3">
+            <span className="font-mono text-xs text-muted-foreground/60">
+              {String(index + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
+            </span>
             <span className="inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs">
               <span className={cn('size-1.5 rounded-full', status.dot)} />
               <span className={status.text}>{status.label}</span>
@@ -131,16 +146,16 @@ export default function ServicesSection() {
       eyebrow="Projets"
       title={
         <>
-          Ce que je construis,
+          Ce que j'ai construit
           <br />
-          <span className="text-brand-text">et ce que je livre</span>
+          <span className="text-brand-text">avec tout ça</span>
         </>
       }
-      description="Des sites en ligne, des projets d'école menés jusqu'au bout, et une réécriture en cours."
+      description="Huit projets, du site en production au travail d'école mené jusqu'au bout. Du plus récent au plus ancien."
     >
       <div className="flex flex-col gap-6">
         {services.map((service, index) => (
-          <ProjectRow key={service.id} service={service} index={index} />
+          <ProjectRow key={service.id} service={service} index={index} total={services.length} />
         ))}
       </div>
     </Section>

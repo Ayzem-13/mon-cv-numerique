@@ -21,13 +21,23 @@ const SOCIALS = [
   { label: 'Email', href: 'mailto:roubaudaxel2@gmail.com', Icon: LuMail },
 ]
 
-function Wordmark() {
+function Wordmark({ section }: { section?: string }) {
   return (
     <a
       href="#accueil"
-      className="relative z-20 px-2 py-1 text-sm font-semibold tracking-tight transition-colors hover:text-brand-text"
+      className="relative z-20 flex min-w-0 items-baseline gap-2 px-2 py-1 transition-colors hover:text-brand-text"
     >
-      {profile.firstName} {profile.lastName}
+      <span className="text-sm font-semibold tracking-tight">
+        {profile.firstName} {profile.lastName}
+      </span>
+      {section && (
+        <>
+          <span aria-hidden className="text-muted-foreground/50">
+            /
+          </span>
+          <span className="truncate text-xs text-muted-foreground">{section}</span>
+        </>
+      )}
     </a>
   )
 }
@@ -56,6 +66,7 @@ export default function Header() {
   const [open, setOpen] = useState(false)
   const ids = useMemo(() => navItems.map((item) => item.id), [])
   const activeId = useActiveSection(ids, 'accueil')
+  const active = navItems.find((item) => item.id === activeId)
 
   const items = navItems.map((item) => ({ name: item.label, link: `#${item.id}` }))
 
@@ -69,7 +80,7 @@ export default function Header() {
 
       <MobileNav>
         <MobileNavHeader>
-          <Wordmark />
+          <Wordmark section={active?.label} />
           <div className="flex items-center gap-2">
             <ThemeToggle />
             <MobileNavToggle isOpen={open} onClick={() => setOpen(!open)} />
