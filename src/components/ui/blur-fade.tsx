@@ -3,6 +3,7 @@ import {
   AnimatePresence,
   motion,
   useInView,
+  useReducedMotion,
   type MotionProps,
   type UseInViewOptions,
   type Variants,
@@ -44,18 +45,24 @@ export function BlurFade({
   const ref = useRef(null)
   const inViewResult = useInView(ref, { once: true, margin: inViewMargin })
   const isInView = !inView || inViewResult
+
+  const reduceMotion = useReducedMotion()
   const defaultVariants: Variants = {
-    hidden: {
-      [direction === 'left' || direction === 'right' ? 'x' : 'y']:
-        direction === 'right' || direction === 'down' ? -offset : offset,
-      opacity: 0,
-      filter: `blur(${blur})`,
-    },
-    visible: {
-      [direction === 'left' || direction === 'right' ? 'x' : 'y']: 0,
-      opacity: 1,
-      filter: `blur(0px)`,
-    },
+    hidden: reduceMotion
+      ? { opacity: 0 }
+      : {
+          [direction === 'left' || direction === 'right' ? 'x' : 'y']:
+            direction === 'right' || direction === 'down' ? -offset : offset,
+          opacity: 0,
+          filter: `blur(${blur})`,
+        },
+    visible: reduceMotion
+      ? { opacity: 1 }
+      : {
+          [direction === 'left' || direction === 'right' ? 'x' : 'y']: 0,
+          opacity: 1,
+          filter: `blur(0px)`,
+        },
   }
   const combinedVariants = variant ?? defaultVariants
 

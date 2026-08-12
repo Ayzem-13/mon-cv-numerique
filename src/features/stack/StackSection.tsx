@@ -49,12 +49,12 @@ export default function StackSection() {
       eyebrow="Stack"
       title={
         <>
-          Du composant React
+          Du front
           <br />
           <span className="text-brand-text">jusqu'à la base de données</span>
         </>
       }
-      description="Ce que je manipule au quotidien, en cours comme en entreprise, de l'interface jusqu'à la mise en production."
+      description="Ce que je manipule au quotidien, en cours comme en alternance."
     >
       <div className="grid gap-4 lg:grid-cols-4">
         {stackLayers.map((layer, index) => {
