@@ -4,7 +4,7 @@ export const services: Service[] = [
   {
     id: 'enki',
     name: 'Enki',
-    shot: '/shots/enki.png',
+    shot: '/shots/enki.webp',
     repo: 'https://github.com/Ayzem-13/Enki-front',
     api: 'https://github.com/Ayzem-13/Enki-backend',
     role: 'Full stack — projet de fin de Master 1',
@@ -36,7 +36,7 @@ export const services: Service[] = [
     id: 'lsfive',
     name: 'LS FIVE',
     domain: 'lsfive.fr',
-    shot: '/shots/lsfive.png',
+    shot: '/shots/lsfive.webp',
     url: 'https://lsfive.fr/',
     role: 'Développement et documentation',
     summary:
@@ -47,7 +47,7 @@ export const services: Service[] = [
   {
     id: 'ananta-actu-v2',
     name: 'Ananta Actu — v2',
-    shot: '/shots/ananta-v2.png',
+    shot: '/shots/ananta-v2.webp',
     role: 'Architecture, back-end et front-end',
     summary:
       "Réécriture complète du média en monorepo Bun : une API Elysia avec Prisma d'un côté, un front Astro en îlots React de l'autre. Défilement inertiel Lenis et animations GSAP.",
@@ -58,7 +58,7 @@ export const services: Service[] = [
     id: 'ananta-france',
     name: 'Ananta France — v1',
     domain: 'ananta-actu.fr',
-    shot: '/shots/ananta.png',
+    shot: '/shots/ananta.webp',
     url: 'https://ananta-actu.fr/',
     role: 'Conception et développement, à trois',
     summary:
@@ -81,7 +81,7 @@ export const services: Service[] = [
     id: 'portfolio-emeric',
     name: 'Portfolio d’Emeric Lehmann',
     domain: 'portfolio-emeric.netlify.app',
-    shot: '/shots/emeric.png',
+    shot: '/shots/emeric.webp',
     url: 'https://portfolio-emeric.netlify.app/',
     role: 'Conception et développement, pour un camarade',
     summary:
@@ -93,7 +93,7 @@ export const services: Service[] = [
     id: 'portfolio-v1',
     name: 'Portfolio — première version',
     domain: 'axel-roubaud-cv.netlify.app',
-    shot: '/shots/portfolio.png',
+    shot: '/shots/portfolio.webp',
     url: 'https://axel-roubaud-cv.netlify.app/',
     repo: 'https://github.com/Ayzem-13/mon-cv-numerique',
     role: 'Conception et développement',

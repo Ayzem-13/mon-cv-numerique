@@ -35,17 +35,47 @@ export function DotPattern({
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 })
 
   useEffect(() => {
+    if (!glow) return
+
     const updateDimensions = () => {
       if (containerRef.current) {
-        const { width, height } = containerRef.current.getBoundingClientRect()
-        setDimensions({ width, height })
+        const rect = containerRef.current.getBoundingClientRect()
+        setDimensions({ width: rect.width, height: rect.height })
       }
     }
 
     updateDimensions()
     window.addEventListener('resize', updateDimensions)
     return () => window.removeEventListener('resize', updateDimensions)
-  }, [])
+  }, [glow])
+
+  if (!glow) {
+    return (
+      <svg
+        ref={containerRef}
+        aria-hidden="true"
+        className={cn(
+          'pointer-events-none absolute inset-0 h-full w-full text-neutral-400/80',
+          className
+        )}
+        {...props}
+      >
+        <defs>
+          <pattern
+            id={`${id}-dots`}
+            width={width}
+            height={height}
+            patternUnits="userSpaceOnUse"
+            x={x}
+            y={y}
+          >
+            <circle cx={cx} cy={cy} r={cr} fill="currentColor" />
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill={`url(#${id}-dots)`} />
+      </svg>
+    )
+  }
 
   const dots = Array.from(
     {
@@ -85,27 +115,16 @@ export function DotPattern({
           cx={dot.x}
           cy={dot.y}
           r={cr}
-          fill={glow ? `url(#${id}-gradient)` : 'currentColor'}
-          initial={glow ? { opacity: 0.4, scale: 1 } : {}}
-          animate={
-            glow
-              ? {
-                  opacity: [0.4, 1, 0.4],
-                  scale: [1, 1.5, 1],
-                }
-              : {}
-          }
-          transition={
-            glow
-              ? {
-                  duration: dot.duration,
-                  repeat: Infinity,
-                  repeatType: 'reverse',
-                  delay: dot.delay,
-                  ease: 'easeInOut',
-                }
-              : {}
-          }
+          fill={`url(#${id}-gradient)`}
+          initial={{ opacity: 0.4, scale: 1 }}
+          animate={{ opacity: [0.4, 1, 0.4], scale: [1, 1.5, 1] }}
+          transition={{
+            duration: dot.duration,
+            repeat: Infinity,
+            repeatType: 'reverse',
+            delay: dot.delay,
+            ease: 'easeInOut',
+          }}
         />
       ))}
     </svg>

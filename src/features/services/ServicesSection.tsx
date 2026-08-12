@@ -2,7 +2,6 @@ import { ArrowUpRight } from 'lucide-react'
 import { LuGithub } from 'react-icons/lu'
 import Section from '@/components/Section'
 import { BlurFade } from '@/components/ui/blur-fade'
-import { BorderBeam } from '@/components/ui/border-beam'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import { services } from './data/services'
@@ -32,6 +31,9 @@ function ProjectRow({ service, index }: { service: Service; index: number }) {
               src={service.shot}
               alt={`Aperçu de ${service.name}`}
               loading="lazy"
+              decoding="async"
+              width={1280}
+              height={800}
               className="aspect-[16/10] w-full object-cover object-left-top transition-transform duration-700 ease-out group-hover:scale-[1.03]"
             />
           ) : (
@@ -117,14 +119,6 @@ function ProjectRow({ service, index }: { service: Service; index: number }) {
             </div>
           )}
         </div>
-
-        {service.status === 'live' && (
-          <BorderBeam
-            duration={8}
-            size={220}
-            className="from-transparent via-brand to-transparent"
-          />
-        )}
       </article>
     </BlurFade>
   )
