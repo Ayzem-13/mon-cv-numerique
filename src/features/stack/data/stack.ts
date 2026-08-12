@@ -20,7 +20,7 @@ export const stackLayers: StackLayer[] = [
     id: 'back',
     label: 'Back',
     hint: 'Services et API',
-    items: ['Java', 'Spring Boot', 'PHP', 'Symfony', 'NestJS', 'Bun', 'Elysia', 'GraphQL', 'REST'],
+    items: ['Java', 'Spring Boot', 'PHP', 'Symfony', 'NestJS', 'Bun', 'Elysia', 'REST'],
   },
   {
     id: 'donnees',

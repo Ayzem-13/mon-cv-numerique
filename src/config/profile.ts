@@ -1,5 +1,8 @@
 import { LuGithub, LuLinkedin, LuMail, LuMapPin, LuPhone } from 'react-icons/lu'
+import { ageOn } from '@/lib/format'
 import type { ContactChannel, Profile } from '@/types'
+
+const BIRTH_DATE = '2004-09-27'
 
 export const profile: Profile = {
   firstName: 'Axel',
@@ -8,12 +11,12 @@ export const profile: Profile = {
   city: 'Marseille',
   timeZone: 'Europe/Paris',
   situation: 'Alternance chez Viaxoft · Mastère Esimed',
-  age: 21,
+  birthDate: BIRTH_DATE,
   pitch:
     "En alternance chez Viaxoft, en Mastère Expert en architecture et développement logiciel à l'Esimed.",
   bio: [
-    "J'ai 21 ans et j'ai obtenu un BUT Informatique à l'IUT d'Aix-en-Provence.",
-    "Passionné par l'informatique depuis le collège, j'ai voulu continuer pour créer des applications et des sites web. Je suis aujourd'hui un Mastère Expert en architecture et développement logiciel à l'Esimed, en alternance chez Viaxoft.",
+    `J'ai ${ageOn(BIRTH_DATE)} ans et j'ai obtenu mon BUT Informatique à l'IUT d'Aix-en-Provence.`,
+    "Passionné par l'informatique depuis le collège, j'ai voulu poursuivre ce cursus pour découvrir de nouvelles technologies et créer des applications et des sites web. Je prépare aujourd'hui un Mastère Expert en architecture et développement logiciel à l'Esimed, en alternance chez Viaxoft.",
   ],
   cvPath: '/CV_Axel_Roubaud.pdf',
   githubUsername: 'Ayzem-13',

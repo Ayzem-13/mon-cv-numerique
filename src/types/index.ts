@@ -61,7 +61,8 @@ export type Profile = {
   lastName: string
   role: string
   city: string
-  age: number
+
+  birthDate: string
   timeZone: string
   situation: string
   pitch: string

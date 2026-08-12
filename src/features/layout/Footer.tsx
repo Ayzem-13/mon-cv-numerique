@@ -12,7 +12,7 @@ export default function Footer() {
         <span className="text-border">│</span>
         <span>{profile.city}, France</span>
         <span className="text-border">│</span>
-        <span>React · TypeScript · Tailwind</span>
+        <span>React · TypeScript · Tailwind · shadcn/ui</span>
 
         <a
           href="#accueil"
