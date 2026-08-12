@@ -1,3 +1,4 @@
+import { Analytics } from '@vercel/analytics/react'
 import ScrollProgress from '@/components/motion/ScrollProgress'
 import SmoothScroll from '@/components/motion/SmoothScroll'
 import ThemeProvider from '@/app/ThemeProvider'
@@ -27,6 +28,7 @@ export default function App() {
       </main>
 
       <Footer />
+      <Analytics />
     </ThemeProvider>
   )
 }
