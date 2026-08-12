@@ -27,6 +27,14 @@ export function formatRange(from: string, to?: string): string {
   return `${formatMonth(from)} → ${to ? formatMonth(to) : "aujourd'hui"}`
 }
 
+export function ageOn(isoDate: string, now = new Date()): number {
+  const [year, month, day] = isoDate.split('-').map(Number)
+  const years = now.getFullYear() - year
+  const beforeBirthday =
+    now.getMonth() + 1 < month || (now.getMonth() + 1 === month && now.getDate() < day)
+  return beforeBirthday ? years - 1 : years
+}
+
 export function elapsedSince(iso: string, now = new Date()): string {
   const start = parse(iso)
   const months =

@@ -5,7 +5,6 @@ import {
   SiGit,
   SiGithubactions,
   SiGitlab,
-  SiGraphql,
   SiMysql,
   SiNestjs,
   SiNextdotjs,
@@ -43,7 +42,6 @@ export const techIcons: Record<string, Tech> = {
   NestJS: { Icon: SiNestjs, color: '#E0234E' },
   Bun: { Icon: SiBun, color: '#FBF0DF' },
   Elysia: { Icon: TbApi, color: '#B794F4' },
-  GraphQL: { Icon: SiGraphql, color: '#E10098' },
   REST: { Icon: TbApi, color: '#8B9CB6' },
 
   PostgreSQL: { Icon: SiPostgresql, color: '#4169E1' },
