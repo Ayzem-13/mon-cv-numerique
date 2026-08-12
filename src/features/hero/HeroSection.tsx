@@ -1,4 +1,6 @@
-import { ArrowRight, Download } from 'lucide-react'
+import { useRef } from 'react'
+import { motion, useReducedMotion, useScroll, useTransform } from 'motion/react'
+import { ArrowRight, ChevronDown, Download } from 'lucide-react'
 import { LuGithub } from 'react-icons/lu'
 import { AnimatedShinyText } from '@/components/ui/animated-shiny-text'
 import { BlurFade } from '@/components/ui/blur-fade'
@@ -10,6 +12,17 @@ import { cn } from '@/lib/utils'
 import { services } from '@/features/services'
 
 export default function HeroSection() {
+  const root = useRef<HTMLElement>(null)
+  const reduceMotion = useReducedMotion()
+
+  const { scrollYProgress } = useScroll({
+    target: root,
+    offset: ['start start', 'end start'],
+  })
+  const contentY = useTransform(scrollYProgress, [0, 1], [0, -90])
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0])
+  const patternScale = useTransform(scrollYProgress, [0, 1], [1, 1.18])
+
   const liveCount = services.filter((service) => service.status === 'live').length
 
   const stats = [
@@ -19,19 +32,28 @@ export default function HeroSection() {
   ]
 
   return (
-    <section id="accueil" className="relative overflow-hidden">
-      <DotPattern
-        width={22}
-        height={22}
-        cy={1}
-        cr={1}
-        className={cn(
-          'text-foreground/25',
-          '[mask-image:radial-gradient(650px_circle_at_center_top,white,transparent)]'
-        )}
-      />
+    <section ref={root} id="accueil" className="relative overflow-hidden">
+      <motion.div
+        aria-hidden
+        style={reduceMotion ? undefined : { scale: patternScale }}
+        className="absolute inset-0"
+      >
+        <DotPattern
+          width={22}
+          height={22}
+          cy={1}
+          cr={1}
+          className={cn(
+            'text-foreground/25',
+            '[mask-image:radial-gradient(650px_circle_at_center_top,white,transparent)]'
+          )}
+        />
+      </motion.div>
 
-      <div className="relative mx-auto flex min-h-[calc(100svh-3.5rem)] max-w-4xl flex-col items-center justify-center px-6 py-28 text-center">
+      <motion.div
+        style={reduceMotion ? undefined : { y: contentY, opacity: contentOpacity }}
+        className="relative mx-auto flex min-h-[calc(100svh-3.5rem)] max-w-4xl flex-col items-center justify-center px-6 py-28 text-center"
+      >
         <BlurFade delay={0.05} inView>
           <span className="mx-auto inline-flex items-center gap-2 rounded-full border bg-card/60 px-4 py-1.5 backdrop-blur-sm">
             <span className="relative flex size-1.5">
@@ -52,9 +74,9 @@ export default function HeroSection() {
 
         <BlurFade delay={0.25} inView>
           <p className="mx-auto mt-6 max-w-2xl text-balance text-lg leading-relaxed text-muted-foreground sm:text-xl">
-            Développeur <span className="text-foreground">full stack</span> à Marseille. Je
-            construis des applications web de bout en bout : l'interface, l'API, la base de données
-            et <span className="text-brand-text">la mise en production</span>.
+            {profile.age} ans, développeur <span className="text-foreground">full stack</span> à{' '}
+            {profile.city}. Je construis des applications web de bout en bout : l'interface, l'API,
+            la base de données et <span className="text-brand-text">la mise en production</span>.
           </p>
         </BlurFade>
 
@@ -62,10 +84,10 @@ export default function HeroSection() {
           <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
             <Button
               size="lg"
-              render={<a href="#projets" />}
+              render={<a href="#parcours" />}
               className="h-12 rounded-full bg-brand px-6 text-base text-brand-foreground hover:bg-brand/90"
             >
-              Voir mes projets
+              Découvrir mon parcours
               <ArrowRight data-icon="inline-end" />
             </Button>
             <Button
@@ -109,7 +131,23 @@ export default function HeroSection() {
             ))}
           </dl>
         </BlurFade>
-      </div>
+
+        <BlurFade delay={0.6} inView>
+          <a
+            href="#parcours"
+            className="group mt-16 inline-flex flex-col items-center gap-2 text-[0.7rem] uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:text-brand-text"
+          >
+            Faire connaissance
+            <motion.span
+              animate={reduceMotion ? undefined : { y: [0, 6, 0] }}
+              transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
+              className="flex size-8 items-center justify-center rounded-full border transition-colors group-hover:border-brand/40"
+            >
+              <ChevronDown className="size-4" />
+            </motion.span>
+          </a>
+        </BlurFade>
+      </motion.div>
     </section>
   )
 }

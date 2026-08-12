@@ -16,7 +16,7 @@ function Experience({
   last: boolean
 }) {
   return (
-    <li className="relative grid gap-4 pb-10 last:pb-0 sm:grid-cols-[10rem_1fr] sm:gap-8">
+    <li className="relative grid gap-3 border-t border-dashed pt-8 first:border-t-0 first:pt-0 sm:grid-cols-[9rem_1fr] sm:gap-8 sm:border-t-0 sm:pb-14 sm:pt-0 sm:last:pb-0">
       <div className="flex items-center gap-3 sm:flex-col sm:items-end sm:gap-1 sm:pt-1 sm:text-right">
         <time className="font-mono text-xs text-muted-foreground">
           {formatRange(entry.from, entry.to)}
@@ -42,7 +42,7 @@ function Experience({
         {!last && (
           <span
             aria-hidden
-            className="absolute left-[4px] top-6 hidden h-[calc(100%+1.5rem)] w-px bg-border sm:block"
+            className="absolute left-[4px] top-6 hidden h-[calc(100%+3.5rem)] w-px bg-border sm:block"
           />
         )}
 
@@ -88,7 +88,7 @@ export default function JournalSection() {
           En entreprise <span className="text-brand-text">depuis 2024</span>
         </>
       }
-      description="Deux stages, puis une alternance chez un éditeur SaaS, en parallèle du Mastère."
+      description="Du BUT Informatique au Mastère en alternance : deux stages, puis une alternance chez un éditeur SaaS."
     >
       <ol className="flex flex-col">
         {experiences.map((entry, index) => (
@@ -111,10 +111,22 @@ export default function JournalSection() {
         <div className="grid gap-4 sm:grid-cols-2">
           {education.map((entry, index) => (
             <BlurFade key={entry.id} delay={0.06 * index} inView>
-              <article className="flex h-full flex-col rounded-2xl border bg-card p-6">
-                <time className="font-mono text-xs text-muted-foreground">
-                  {formatRange(entry.from, entry.to)}
-                </time>
+              <article
+                className={cn(
+                  'flex h-full flex-col rounded-2xl border bg-card p-6',
+                  index === 0 && 'border-brand/30'
+                )}
+              >
+                <div className="flex flex-wrap items-center gap-2">
+                  <time className="font-mono text-xs text-muted-foreground">
+                    {formatRange(entry.from, entry.to)}
+                  </time>
+                  {index === 0 && (
+                    <span className="rounded-full border border-brand/40 px-2 py-0.5 font-mono text-[0.65rem] uppercase tracking-wider text-brand-text">
+                      En cours
+                    </span>
+                  )}
+                </div>
                 <h4 className="mt-2 font-semibold leading-snug tracking-tight">{entry.title}</h4>
                 <p className="mt-1 text-sm text-muted-foreground">{entry.org}</p>
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{entry.detail}</p>

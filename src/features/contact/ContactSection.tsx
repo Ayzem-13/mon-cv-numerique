@@ -32,10 +32,10 @@ export default function ContactSection() {
     >
       <BlurFade inView>
         <div className="relative mx-auto max-w-3xl overflow-hidden rounded-2xl border bg-card p-6 sm:p-10">
-          <div className="flex flex-col gap-3 sm:flex-row">
+          <div className="grid gap-3 sm:grid-cols-2">
             <Button
               size="lg"
-              className="h-12 flex-1 rounded-full bg-brand text-base text-brand-foreground hover:bg-brand/90"
+              className="h-12 w-full justify-center rounded-full bg-brand text-sm text-brand-foreground hover:bg-brand/90 sm:text-base"
               render={<a href="mailto:roubaudaxel2@gmail.com" />}
             >
               M'écrire un mail
@@ -44,7 +44,7 @@ export default function ContactSection() {
             <Button
               variant="outline"
               size="lg"
-              className="h-12 flex-1 rounded-full text-base"
+              className="h-12 w-full justify-center rounded-full text-sm sm:text-base"
               render={<a href={profile.cvPath} download type="application/pdf" />}
             >
               <Download data-icon="inline-start" />

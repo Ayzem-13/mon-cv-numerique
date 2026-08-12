@@ -3,7 +3,7 @@ import SmoothScroll from '@/components/motion/SmoothScroll'
 import ThemeProvider from '@/app/ThemeProvider'
 import { ActivitySection } from '@/features/activity'
 import { ContactSection } from '@/features/contact'
-import { Footer, Header } from '@/features/layout'
+import { Footer, Header, SectionRail } from '@/features/layout'
 import { JournalSection } from '@/features/journal'
 import { ServicesSection } from '@/features/services'
 import { StackSection } from '@/features/stack'
@@ -15,12 +15,13 @@ export default function App() {
       <SmoothScroll />
       <ScrollProgress />
       <Header />
+      <SectionRail />
 
       <main>
         <HeroSection />
-        <ServicesSection />
         <JournalSection />
         <StackSection />
+        <ServicesSection />
         <ActivitySection />
         <ContactSection />
       </main>

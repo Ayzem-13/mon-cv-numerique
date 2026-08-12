@@ -21,7 +21,7 @@ export default function ActivitySection() {
 
   return (
     <Section
-      id="activite"
+      id="github"
       eyebrow="GitHub"
       title={
         <>

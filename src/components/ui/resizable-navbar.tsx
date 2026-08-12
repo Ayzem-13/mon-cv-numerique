@@ -20,6 +20,7 @@ interface NavItemsProps {
   items: {
     name: string
     link: string
+    index?: string
   }[]
   className?: string
   onItemClick?: () => void
@@ -89,7 +90,6 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
         stiffness: 200,
         damping: 50,
       }}
-      style={{}}
       className={cn(
         'relative z-[60] mx-auto hidden w-full max-w-7xl flex-row items-center justify-between self-start rounded-full bg-transparent px-4 py-2 lg:flex dark:bg-transparent',
         visible && 'border bg-background/80',
@@ -126,7 +126,14 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
               className="absolute inset-0 h-full w-full rounded-full bg-accent"
             />
           )}
-          <span className="relative z-20">{item.name}</span>
+          <span className="relative z-20 flex items-baseline gap-1.5">
+            {item.index && (
+              <span className="font-mono text-[0.65rem] text-muted-foreground/60">
+                {item.index}
+              </span>
+            )}
+            {item.name}
+          </span>
         </a>
       ))}
     </motion.div>
