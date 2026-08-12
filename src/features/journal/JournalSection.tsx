@@ -157,7 +157,7 @@ export default function JournalSection() {
       eyebrow="Parcours"
       title={
         <>
-          En entreprise <span className="text-brand-text">depuis 2024</span>
+          En entreprise <span className="text-brand-text">depuis 2025</span>
         </>
       }
       description="Du BUT Informatique au Mastère en alternance : deux stages, puis une alternance chez un éditeur SaaS."

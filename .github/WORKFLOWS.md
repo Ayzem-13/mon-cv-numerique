@@ -32,8 +32,25 @@ n'appelle que des API publiques depuis le navigateur.
 1. Sur Vercel, **Add New → Project**, puis importer `Ayzem-13/mon-cv-numerique`.
 2. Laisser la détection automatique : le framework Vite, la commande de build et le dossier
    `dist` sont déjà déclarés dans `vercel.json`.
-3. Ne rien ajouter dans **Environment Variables** : le projet n'en utilise aucune.
+3. Ne rien ajouter dans **Environment Variables**.
 4. Déployer.
+
+### Variables d'environnement
+
+Le projet n'en exige aucune, et n'en contient aucune qui soit secrète. Le site est statique :
+il n'y a pas de serveur pour garder un secret, donc tout ce qui entre dans le build est lisible
+par n'importe quel visiteur. Aucune clé d'API n'a sa place ici — l'API GitHub est appelée sans
+authentification, précisément pour cette raison.
+
+Une seule variable est reconnue, et elle est facultative :
+
+| Variable        | Rôle                                                                     |
+| --------------- | ------------------------------------------------------------------------ |
+| `VITE_SITE_URL` | Force l'URL absolue du `canonical`, du sitemap et de l'image de partage. |
+
+Elle ne sert que si tu branches un nom de domaine à toi. Sans elle, l'URL vient de
+`VERCEL_PROJECT_PRODUCTION_URL`, que Vercel fournit tout seul et qui suit les renommages du
+projet. Cette valeur est publique de toute façon : elle est écrite en clair dans le HTML livré.
 
 ### Si la CSP bloque quelque chose
 

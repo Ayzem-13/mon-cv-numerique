@@ -10,7 +10,7 @@ function resolveSiteUrl(): string {
   if (process.env.VITE_SITE_URL) return process.env.VITE_SITE_URL.replace(/\/$/, '')
   if (process.env.VERCEL_PROJECT_PRODUCTION_URL)
     return `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-  return 'https://mon-cv-numerique.vercel.app'
+  return 'https://portfolio-axel-roubaud.vercel.app'
 }
 
 function siteUrl(): Plugin {
