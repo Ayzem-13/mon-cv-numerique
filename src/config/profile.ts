@@ -10,7 +10,11 @@ export const profile: Profile = {
   situation: 'Alternance chez Viaxoft · Mastère Esimed',
   age: 21,
   pitch:
-    "Je construis des applications web de bout en bout : l'interface, l'API, la base de données et la mise en production par intégration continue.",
+    "En alternance chez Viaxoft, en Mastère Expert en architecture et développement logiciel à l'Esimed.",
+  bio: [
+    "J'ai 21 ans et j'ai obtenu un BUT Informatique à l'IUT d'Aix-en-Provence.",
+    "Passionné par l'informatique depuis le collège, j'ai voulu continuer pour créer des applications et des sites web. Je suis aujourd'hui un Mastère Expert en architecture et développement logiciel à l'Esimed, en alternance chez Viaxoft.",
+  ],
   cvPath: '/CV_Axel_Roubaud.pdf',
   githubUsername: 'Ayzem-13',
 }

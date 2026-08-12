@@ -6,6 +6,7 @@ export const experiences: JournalEntry[] = [
     from: '2025-10',
     to: '2027-10',
     org: 'Viaxoft',
+    logo: '/logos/viaxoft.webp',
     kind: 'Alternance',
     title: 'Développeur full stack',
     detail: 'Éditeur de logiciel SaaS pour agences de voyage et tour-opérateurs.',
@@ -31,9 +32,10 @@ export const experiences: JournalEntry[] = [
     from: '2025-02',
     to: '2025-06',
     org: 'PostLab',
+    logo: '/logos/postlab.webp',
     kind: 'Stage',
     title: 'Développeur web',
-    detail: 'Application web de formation de formateurs, développée en équipe.',
+    detail: "Création d'une application web Symfony destinée à former des formateurs, en équipe.",
     stack: ['Symfony', 'PHP', 'Bootstrap'],
   },
   {
@@ -41,9 +43,10 @@ export const experiences: JournalEntry[] = [
     from: '2024-04',
     to: '2024-06',
     org: 'Rubambelle',
+    logo: '/logos/rubambelle.webp',
     kind: 'Stage',
     title: 'Développeur web',
-    detail: "Création d'une boutique en ligne, de la maquette à la mise en production.",
+    detail: "Création d'une boutique e-commerce sous WordPress.",
     stack: ['WordPress', 'PHP', 'JavaScript'],
   },
 ]
@@ -54,6 +57,7 @@ export const education: JournalEntry[] = [
     from: '2025-09',
     to: '2027-10',
     org: 'Esimed',
+    logo: '/logos/esimed.webp',
     kind: 'Formation',
     title: 'Mastère Expert en architecture et développement logiciel',
     detail:
@@ -64,6 +68,7 @@ export const education: JournalEntry[] = [
     from: '2022-09',
     to: '2025-06',
     org: "IUT d'Aix-Marseille",
+    logo: '/logos/amu.webp',
     kind: 'Formation',
     title: "BUT Informatique, parcours réalisation d'applications",
     detail:

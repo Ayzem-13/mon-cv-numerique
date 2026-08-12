@@ -29,6 +29,8 @@ export type JournalEntry = {
   title: string
   detail: string
 
+  logo?: string
+
   missions?: string[]
   stack?: string[]
 }
@@ -63,6 +65,8 @@ export type Profile = {
   timeZone: string
   situation: string
   pitch: string
+
+  bio: string[]
   cvPath: string
   githubUsername: string
 }
