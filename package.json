@@ -1,6 +1,10 @@
 {
   "name": "mon-cv-numerique",
   "private": true,
+  "packageManager": "pnpm@9.15.0",
+  "engines": {
+    "node": ">=20.19"
+  },
   "version": "0.0.0",
   "type": "module",
   "scripts": {
