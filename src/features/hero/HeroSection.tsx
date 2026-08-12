@@ -3,7 +3,6 @@ import { motion, useReducedMotion, useScroll, useTransform } from 'motion/react'
 import { ArrowRight, ChevronDown, Download } from 'lucide-react'
 import { BlurFade } from '@/components/ui/blur-fade'
 import { Button } from '@/components/ui/button'
-import { DotPattern } from '@/components/ui/dot-pattern'
 import { NumberTicker } from '@/components/ui/number-ticker'
 import { profile } from '@/config/profile'
 import { cn } from '@/lib/utils'
@@ -19,7 +18,6 @@ export default function HeroSection() {
   })
   const contentY = useTransform(scrollYProgress, [0, 1], [0, -90])
   const contentOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0])
-  const patternScale = useTransform(scrollYProgress, [0, 1], [1, 1.18])
 
   const liveCount = services.filter((service) => service.status === 'live').length
 
@@ -32,23 +30,6 @@ export default function HeroSection() {
   return (
     <section ref={root} id="accueil" className="relative overflow-hidden">
       <motion.div
-        aria-hidden
-        style={reduceMotion ? undefined : { scale: patternScale }}
-        className="absolute inset-0"
-      >
-        <DotPattern
-          width={22}
-          height={22}
-          cy={1}
-          cr={1}
-          className={cn(
-            'text-foreground/25',
-            '[mask-image:radial-gradient(650px_circle_at_center_top,white,transparent)]'
-          )}
-        />
-      </motion.div>
-
-      <motion.div
         style={reduceMotion ? undefined : { y: contentY, opacity: contentOpacity }}
         className="relative mx-auto flex min-h-[calc(100svh-3.5rem)] max-w-4xl flex-col items-center justify-center px-6 py-28 text-center"
       >
@@ -60,6 +41,7 @@ export default function HeroSection() {
 
         <BlurFade delay={0.25} inView>
           <p className="mt-4 text-sm uppercase tracking-[0.2em] text-brand-text">{profile.role}</p>
+
           <div className="mx-auto mt-7 flex max-w-xl flex-col gap-3 text-left">
             {profile.bio.map((paragraph, index) => (
               <p
